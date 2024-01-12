@@ -1,10 +1,10 @@
 import React from 'react';
-import ApiDataDisplay from './ApiDataDisplay';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
     <div className="App">
-      <ApiDataDisplay />
+      <Homepage />
     </div>
   );
 }
