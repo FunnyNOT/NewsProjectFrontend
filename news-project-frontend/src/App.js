@@ -1,6 +1,5 @@
 import React from 'react';
 import ApiDataDisplay from './ApiDataDisplay';
-import LoginPage from './LoginPage';
 
 function App() {
   return (
