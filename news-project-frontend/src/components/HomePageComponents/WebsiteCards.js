@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-
+import { Button, CardActionArea, Divider } from '@mui/material';
 import { fetchData } from '../../global_functions/ApiDataDisplay';
+
 
 
 
@@ -23,30 +22,62 @@ export default function WebsiteCards() {
         getData();
     }, []);
     return (
-        <Grid container spacing={3}>
+        <>
             {data && data.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                    <Card sx={{ maxWidth: 345 }}>
-                    <CardActionArea href={item.website_link}>
-                        <CardMedia
-                        component="img"
-                        height="140"
-                        image={`${process.env.PUBLIC_URL}/images/defaultNewsImage.png`}
-                        alt="green iguana"
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {item.website_name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {item.website_description.substring(0, 100) + '...'}
-                        </Typography>
+                <>
+                    <Card style={{  
+                        display: 'flex',
+                        margin: '5px', 
+                        backgroundColor: '#242b2c', 
+                        width: '100%',}}
+                        variant="outlined" >
+
+                        <CardActionArea 
+                            href={item.website_link} 
+                            style={{    display: 'flex', 
+                                        width: '75%' }}>
+
+                            <CardMedia
+                                component="img"
+                                height="180"
+                                image={`${process.env.PUBLIC_URL}/images/defaultNewsImage.png`}
+                                alt="green iguana"
+                                style={{ width: '25%', borderRadius: '8px' }}
+                            />
+
+                            <CardContent>
+
+                                <Typography gutterBottom variant="h5" component="div" style={{ color: '#da292f' }}>
+                                    {item.website_name}
+                                </Typography>
+                                
+                                <Typography variant="caption" color="text.secondary" style={{ color: '#f9f9f9' }}>
+                                    {item.website_description.substring(0, 200) + '...'}
+                                </Typography>
+                            
+                            </CardContent>
+
+                        </CardActionArea>
+
+                        <CardContent style={{   flex: '1', 
+                                                display: 'flex', 
+                                                flexDirection: 'column', 
+                                                justifyContent: 'center', 
+                                                alignItems: 'flex-end' }}>
+                                        
+                            <Button variant="contained" color="primary">
+                                Visit
+                                Website
+                            </Button>
+
                         </CardContent>
-                    </CardActionArea>
+                    
                     </Card>
-                </Grid>
+
+                    <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
+                </>
             ))}
-        </Grid>
+        </>
     );
 }
 
