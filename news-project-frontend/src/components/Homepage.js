@@ -19,7 +19,7 @@ const Homepage = () => {
         <StyledHomePage>
 
             <DrawerAppBar  />
-            
+
             <Box component="section" sx={{ p: 10 }}>
                 <WebsiteCards /> 
             </Box>
@@ -27,5 +27,6 @@ const Homepage = () => {
         </StyledHomePage>
     );
 }
+
 
 export default Homepage;

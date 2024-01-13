@@ -29,7 +29,9 @@ export default function WebsiteCards() {
                         display: 'flex',
                         margin: '5px', 
                         backgroundColor: '#242b2c', 
-                        width: '100%',}}
+                        width: '100%',
+                        justifyContent: 'center',
+                        alignItems: 'center',}}
                         variant="outlined" >
 
                         <CardActionArea 
