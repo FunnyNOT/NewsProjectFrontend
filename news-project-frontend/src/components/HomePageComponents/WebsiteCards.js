@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography'
 import { Button, CardActionArea, Divider } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
 
-import { fetchData } from '../../global_functions/ApiDataDisplay'
-
 export default function WebsiteCards() {
   const [data, setData] = useState(null)
 
@@ -23,7 +21,7 @@ export default function WebsiteCards() {
     <>
       {data &&
         data.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <Card
               style={{
                 display: 'flex',
@@ -34,12 +32,13 @@ export default function WebsiteCards() {
                 alignItems: 'center'
               }}
               variant='outlined'
+              key={item}
             >
               <CardActionArea href={item.website_link} style={{ display: 'flex', width: '75%' }}>
                 <CardMedia
                   component='img'
                   height='180'
-                  image={`${process.env.PUBLIC_URL}/images/defaultNewsImage.png`}
+                  image={`${process.env.PUBLIC_URL}/images/${item.website_image_name}.png`}
                   alt='green iguana'
                   style={{ width: '25%', borderRadius: '8px' }}
                 />
@@ -65,7 +64,7 @@ export default function WebsiteCards() {
             </Card>
 
             <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
-          </>
+          </React.Fragment>
         ))}
     </>
   )
