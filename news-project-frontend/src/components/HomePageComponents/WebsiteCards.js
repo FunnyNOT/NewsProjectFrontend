@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { Button, CardActionArea, Divider } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 
 export default function WebsiteCards() {
   const [data, setData] = useState(null)
@@ -26,21 +27,21 @@ export default function WebsiteCards() {
               style={{
                 display: 'flex',
                 margin: '5px',
-                backgroundColor: '#242b2c',
+                backgroundColor: '#23282f',
                 width: '100%',
+                height: '220px',
                 justifyContent: 'center',
                 alignItems: 'center'
               }}
               variant='outlined'
               key={item}
             >
-              <CardActionArea href={item.website_link} style={{ display: 'flex', width: '75%' }}>
+              <CardActionArea href={item.website_link} style={{ display: 'flex', width: '90%' }}>
                 <CardMedia
                   component='img'
-                  height='180'
                   image={`${process.env.PUBLIC_URL}/images/${item.website_image_name}.png`}
                   alt='green iguana'
-                  style={{ width: '25%', borderRadius: '8px' }}
+                  style={{ width: '25%', objectFit: 'cover', borderRadius: '8px' }}
                 />
 
                 <CardContent>
@@ -48,7 +49,7 @@ export default function WebsiteCards() {
                     {item.website_name}
                   </Typography>
 
-                  <Typography variant='caption' color='text.secondary' style={{ color: '#f9f9f9' }}>
+                  <Typography variant='body1' color='text.secondary' style={{ color: '#f9f9f9' }}>
                     {item.website_description.substring(0, 200) + '...'}
                   </Typography>
                 </CardContent>
@@ -57,8 +58,10 @@ export default function WebsiteCards() {
               <CardContent
                 style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
               >
-                <Button variant='contained' color='primary'>
-                  Visit Website
+                <Button variant='text' style={{ color: '#f9f9f9', fontSize: '10px' }} endIcon={<ArrowOutwardIcon />}>
+                  Visit
+                  <br />
+                  Website
                 </Button>
               </CardContent>
             </Card>
