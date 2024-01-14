@@ -6,8 +6,7 @@ const fetchData = async () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Api-Key': process.env.REACT_APP_API_KEY,
-        'device-name': process.env.REACT_APP_DEVICE_NAME
+        'api-key': process.env.REACT_APP_API_KEY,
       }
     })
 
@@ -16,7 +15,7 @@ const fetchData = async () => {
     }
 
     const result = await response.json()
-    return result
+    return result.websites
   } catch (error) {
     console.error('Error fetching data:', error)
     return null
