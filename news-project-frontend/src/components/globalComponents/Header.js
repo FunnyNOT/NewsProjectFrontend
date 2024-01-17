@@ -88,6 +88,7 @@ function DrawerAppBar(props) {
                     {item}
                   </Button>
                 ))}
+
                 <Button key='Profile' sx={{ color: '#fff' }} href=''>
                   Profile
                 </Button>
