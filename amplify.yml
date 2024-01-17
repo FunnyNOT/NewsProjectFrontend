@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd news-project-frontend
+        - npm install
+    build:
+      commands:
+        - echo "REACT_APP_API_KEY=$REACT_APP_API_KEY" >> .env
+        - echo "REACT_APP_FLASK_PUBLIC_IP=$REACT_APP_FLASK_PUBLIC_IP" >> .env
+        - npm run build
+        
+  artifacts:
+    baseDirectory: news-project-frontend/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - news-project-frontend/node_modules/**/*
