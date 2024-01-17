@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, CardActionArea, Divider, styled, useMediaQuery, useTheme } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import { useWebsiteContext } from '../../global_functions/WebsiteContext'
 
 export default function WebsiteCards() {
   const [data, setData] = useState(null)
@@ -22,7 +23,7 @@ export default function WebsiteCards() {
 
     getData()
   }, [])
-  console.log(data)
+
 
   const MyCard = styled(Card)({
     '&:hover .overlay': {
@@ -49,11 +50,19 @@ export default function WebsiteCards() {
   })
 
   const navigate = useNavigate()
+  const { setWebsiteIdValue } = useWebsiteContext();
 
-  const handleCardClick = (websiteId) => {
-    // Navigate to the new page and pass only the websiteId as a parameter
-    navigate(`/${websiteId}`)
+
+  const handleCardClick = (websiteImageName,websiteId) => {
+
+    setWebsiteIdValue(websiteId);
+
+    navigate(`/${websiteImageName}`)
   }
+  const handleButtonClick = (websiteLink) => {
+    // Open the website link in a new tab
+    window.open(websiteLink, '_blank');
+  };
 
   return (
     <>
@@ -62,7 +71,7 @@ export default function WebsiteCards() {
           <React.Fragment key={index}>
             <MyCard variant='plain' key={item}>
               <CardActionArea
-                onClick={() => handleCardClick(item.website_id, item.website_image_name)}
+                onClick={() => handleCardClick(item.website_image_name, item.website_id)}
                 style={{ display: 'flex', width: '85%', flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row' }}
               >
                 <Overlay className='overlay'></Overlay>
@@ -92,7 +101,6 @@ export default function WebsiteCards() {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-
               <CardContent
                 style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
               >
@@ -100,6 +108,7 @@ export default function WebsiteCards() {
                   variant='outlined'
                   style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '6px' : '10px', borderColor: '#f9f9f9' }}
                   endIcon={<ArrowOutwardIcon />}
+                  onClick={() => handleButtonClick(item.website_link)}
                 >
                   Visit
                   <br />

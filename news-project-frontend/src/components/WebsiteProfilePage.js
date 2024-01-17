@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useWebsiteContext } from '../global_functions/WebsiteContext'
 import ProfileBanner from './WebsiteProfilePageComponents/WebsiteProfileBanner'
 import ArticleCards from './WebsiteProfilePageComponents/ArticleCards'
 import { DrawerAppBar } from './globalComponents/Header'
@@ -28,11 +28,11 @@ const theme = createTheme({
 })
 
 const WebsiteProfilePage = () => {
-  const { websiteId } = useParams()
+  const { websiteId } = useWebsiteContext();
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
+  
   useEffect(() => {
     const fetchDataFromAPI2 = async () => {
       try {
