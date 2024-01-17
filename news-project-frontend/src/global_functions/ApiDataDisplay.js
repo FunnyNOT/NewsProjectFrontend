@@ -1,5 +1,5 @@
-const url = process.env.REACT_APP_FLASK_PUBLIC_IP + '/websites/'
-console.log('url:', url)
+const websites_url = process.env.REACT_APP_FLASK_PUBLIC_IP + '/websites/'
+console.log('url:', websites_url)
 
 const fetchData = async () => {
   try {
