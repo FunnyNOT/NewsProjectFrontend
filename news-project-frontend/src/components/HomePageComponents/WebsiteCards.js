@@ -3,12 +3,16 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import { Button, CardActionArea, Divider } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { Button, CardActionArea, Divider, styled, useMediaQuery, useTheme } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 
 export default function WebsiteCards() {
   const [data, setData] = useState(null)
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     const getData = async () => {
@@ -18,39 +22,73 @@ export default function WebsiteCards() {
 
     getData()
   }, [])
+  console.log(data)
+
+  const MyCard = styled(Card)({
+    '&:hover .overlay': {
+      backgroundColor: 'rgba(170, 170, 170, 0.1)'
+    },
+    flexDirection: isSmallScreen ? 'column' : 'row', // Dynamic flexDirection based on screen width
+    display: 'flex',
+    margin: '5px',
+    backgroundColor: '#23282f',
+    width: '100%',
+    height: isSmallScreen ? '350px' : isMediumScreen ? '300px' : '220px',
+    justifyContent: 'center',
+    alignItems: 'center'
+  })
+
+  const Overlay = styled('div')({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'transparent',
+    transition: 'background-color 0.3s'
+  })
+
+  const navigate = useNavigate()
+
+  const handleCardClick = (websiteId) => {
+    // Navigate to the new page and pass only the websiteId as a parameter
+    navigate(`/${websiteId}`)
+  }
+
   return (
     <>
       {data &&
         data.map((item, index) => (
           <React.Fragment key={index}>
-            <Card
-              style={{
-                display: 'flex',
-                margin: '5px',
-                backgroundColor: '#23282f',
-                width: '100%',
-                height: '220px',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-              variant='outlined'
-              key={item}
-            >
-              <CardActionArea href={item.website_link} style={{ display: 'flex', width: '90%' }}>
+            <MyCard variant='plain' key={item}>
+              <CardActionArea
+                onClick={() => handleCardClick(item.website_id, item.website_image_name)}
+                style={{ display: 'flex', width: '85%', flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row' }}
+              >
+                <Overlay className='overlay'></Overlay>
                 <CardMedia
                   component='img'
                   image={`${process.env.PUBLIC_URL}/images/${item.website_image_name}.png`}
                   alt='green iguana'
-                  style={{ width: '25%', objectFit: 'cover', borderRadius: '8px' }}
+                  style={{ width: isSmallScreen ? '100%' : isMediumScreen ? '45%' : '25%', objectFit: 'cover', borderRadius: '10px' }}
                 />
 
                 <CardContent>
-                  <Typography gutterBottom variant='h5' component='div' style={{ color: '#da292f' }}>
+                  <Typography
+                    gutterBottom
+                    variant='h5'
+                    component='div'
+                    style={{ color: '#da292f', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px' }}
+                  >
                     {item.website_name}
                   </Typography>
 
-                  <Typography variant='body1' color='text.secondary' style={{ color: '#f9f9f9' }}>
-                    {item.website_description.substring(0, 200) + '...'}
+                  <Typography
+                    variant='body1'
+                    color='text.secondary'
+                    style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '14px' : '18px' }}
+                  >
+                    {item.website_description.substring(0, isSmallScreen ? '120' : '200') + '...'}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -58,19 +96,22 @@ export default function WebsiteCards() {
               <CardContent
                 style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
               >
-                <Button variant='text' style={{ color: '#f9f9f9', fontSize: '10px' }} endIcon={<ArrowOutwardIcon />}>
+                <Button
+                  variant='outlined'
+                  style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '6px' : '10px', borderColor: '#f9f9f9' }}
+                  endIcon={<ArrowOutwardIcon />}
+                >
                   Visit
                   <br />
                   Website
                 </Button>
               </CardContent>
-            </Card>
+            </MyCard>
 
             <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
+            <br />
           </React.Fragment>
         ))}
     </>
   )
 }
-
-export { WebsiteCards }
