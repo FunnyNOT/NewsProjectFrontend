@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import ProfileBanner from './WebsiteProfilePageComponents/WebsiteProfileBanner'
+// import ProfileBanner from './WebsiteProfilePageComponents/WebsiteProfileBanner'
+import WebsiteInfoCard from './WebsiteProfilePageComponents/WebsiteInfoCard'
 import ArticleCards from './WebsiteProfilePageComponents/ArticleCards'
 import { DrawerAppBar } from './globalComponents/Header'
-import { createTheme, ThemeProvider, CircularProgress } from '@mui/material'
+import { createTheme, ThemeProvider, CircularProgress, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import { fetchArticles } from '../global_functions/ApiDataDisplay'
@@ -75,16 +76,32 @@ const WebsiteProfilePage = () => {
   }
 
   const imageUrl = `${process.env.PUBLIC_URL}/images/${data.website.website_image_name}.png`
-  // const websiteName =
+  const websiteName = data.website.website_name
+  const websiteDescription = data.website.website_description
+  const websiteLink = data.website.website_link
 
   return (
     <ThemeProvider theme={theme}>
       <StyledPage>
         <DrawerAppBar />
-        <ProfileBanner imageLink={imageUrl} />
-        <Box component='section' sx={{ marginTop: '150px', marginLeft: '10px', alignContent: 'center' }}>
-          <h2>Latest News</h2>
-          <ArticleCards data={data} />
+        <Box
+          component='section'
+          sx={{ marginTop: '80px', marginLeft: '0px', marginBottom: '0px', alignContent: 'center', borderBottom: '1px solid #fff' }}
+        >
+          <WebsiteInfoCard
+            imageUrl={imageUrl}
+            websiteName={websiteName}
+            websiteDescription={websiteDescription}
+            websiteLink={websiteLink}
+          />
+        </Box>
+        <Box component='section' sx={{ marginLeft: '0px', alignContent: 'center' }}>
+          <Box sx={{ width: '100%', backgroundColor: '#fff', marginTop: '-20px', marginBottom: '80px' }}>
+            <Typography style={{ textAlign: 'center', fontSize: '24px' }}>Latest News</Typography>
+          </Box>
+          <Box sx={{ marginTop: '20px' }}>
+            <ArticleCards data={data} />
+          </Box>
         </Box>
       </StyledPage>
     </ThemeProvider>
