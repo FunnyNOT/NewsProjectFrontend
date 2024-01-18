@@ -16,8 +16,6 @@ import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Slide from '@mui/material/Slide'
 import { Link } from 'react-router-dom'
 
-
-
 function HideOnScroll(props) {
   const { children, window } = props
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -37,7 +35,7 @@ function HideOnScroll(props) {
 const drawerWidth = 240
 // const navItems = ['Home', 'About Us']
 // const navItems = [
-//   { label: 'Home', path: '/' }, 
+//   { label: 'Home', path: '/' },
 //   { label: 'About Us', path: '/about' },
 // ];
 
@@ -50,27 +48,26 @@ function DrawerAppBar(props) {
   }
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor:'#23282f', height:'100%' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor: '#23282f', height: '100%' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" height="50" />
-      </Box> 
-  
+        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='50' />
+      </Box>
+
       <Divider />
       <List>
-        
         <ListItem disablePadding>
-          <Link to="/" style={{ textDecoration: 'none', width:'100%' }}>  
-            <ListItemButton sx={{ textAlign: 'center', color:'#fff',  margin: '8px 0'}}>              
-              <ListItemText primary='Home'  />              
+          <Link to='/' style={{ textDecoration: 'none', width: '100%' }}>
+            <ListItemButton sx={{ textAlign: 'center', color: '#fff', margin: '8px 0' }}>
+              <ListItemText primary='Home' />
             </ListItemButton>
-          </Link >
-          </ListItem>
-          <ListItem disablePadding>
-          <Link to="/about" style={{ textDecoration: 'none', width:'100%' }}>  
-            <ListItemButton sx={{ textAlign: 'center', color:'#fff',  margin: '8px 0'}}>              
-              <ListItemText primary='About Us' />              
+          </Link>
+        </ListItem>
+        <ListItem disablePadding>
+          <Link to='/about' style={{ textDecoration: 'none', width: '100%' }}>
+            <ListItemButton sx={{ textAlign: 'center', color: '#fff', margin: '8px 0' }}>
+              <ListItemText primary='About Us' />
             </ListItemButton>
-          </Link >
+          </Link>
         </ListItem>
       </List>
     </Box>
@@ -83,8 +80,8 @@ function DrawerAppBar(props) {
       <React.Fragment>
         <CssBaseline />
         <HideOnScroll {...props}>
-          <AppBar component='nav' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Toolbar sx={{ display: 'flex', width:'100%' }}>
+          <AppBar component='nav' sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid #fff' }}>
+            <Toolbar sx={{ display: 'flex', width: '100%' }}>
               <IconButton
                 color='inherit'
                 aria-label='open drawer'
@@ -96,20 +93,22 @@ function DrawerAppBar(props) {
               </IconButton>
               <Box width={'50%'}></Box>
               <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-                <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" height="40" />
-              </Box>              
-              <Box sx={{ display: { xs: 'none', sm: 'block' } }} >
-               <Link to="/" style={{ textDecoration: 'none' }}>
-                  <Button sx={{ color: '#fff' }}>
-                    Home
-                  </Button>
-                </Link> 
-                <Link to="/about" style={{ textDecoration: 'none' }}>
-                  <Button sx={{ color: '#fff' }}>
-                    About Us
-                  </Button>
-                </Link> 
-                
+                <Link to='/' style={{ textDecoration: 'none' }}>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                    alt='Logo'
+                    height='40'
+                    style={{ transform: 'translateX(-50%)', userSelect: 'none' }}
+                  />
+                </Link>
+              </Box>
+              <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Link to='/' style={{ textDecoration: 'none' }}>
+                  <Button sx={{ color: '#fff' }}>Home</Button>
+                </Link>
+                <Link to='/about' style={{ textDecoration: 'none' }}>
+                  <Button sx={{ color: '#fff' }}>About Us</Button>
+                </Link>
               </Box>
             </Toolbar>
           </AppBar>

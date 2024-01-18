@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useWebsiteContext } from '../global_functions/WebsiteContext'
 import ProfileBanner from './WebsiteProfilePageComponents/WebsiteProfileBanner'
 import ArticleCards from './WebsiteProfilePageComponents/ArticleCards'
 import { DrawerAppBar } from './globalComponents/Header'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import { fetchArticles } from '../global_functions/ApiDataDisplay'
+import { useLocation } from 'react-router-dom'
 
 const StyledPage = styled('div')({
   backgroundColor: '#23282f',
@@ -27,12 +27,25 @@ const theme = createTheme({
   }
 })
 
+function createWebsiteId(number) {
+  const numberString = number.toString()
+  const modifiedString = numberString.slice(3, -3)
+  const modifiedNumber = parseInt(modifiedString, 10)
+  return modifiedNumber
+}
+function getWebsiteId(pathname) {
+  const pseudoIdString = pathname.replace(/[^0-9]/g, '')
+  const pseudoId = parseInt(pseudoIdString, 10)
+  const websiteId = createWebsiteId(pseudoId)
+  return websiteId
+}
 const WebsiteProfilePage = () => {
-  const { websiteId } = useWebsiteContext();
+  const { pathname } = useLocation()
+  const websiteId = getWebsiteId(pathname)
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  
+
   useEffect(() => {
     const fetchDataFromAPI2 = async () => {
       try {
@@ -49,7 +62,12 @@ const WebsiteProfilePage = () => {
   }, [websiteId])
 
   if (loading) {
-    return <p>Loading...</p>
+    // return <p>Loading...</p>
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#23282f' }}>
+        <CircularProgress size={30} color='primary' thickness={4} />
+      </div>
+    )
   }
 
   if (error) {
@@ -57,6 +75,7 @@ const WebsiteProfilePage = () => {
   }
 
   const imageUrl = `${process.env.PUBLIC_URL}/images/${data.website.website_image_name}.png`
+  // const websiteName =
 
   return (
     <ThemeProvider theme={theme}>
