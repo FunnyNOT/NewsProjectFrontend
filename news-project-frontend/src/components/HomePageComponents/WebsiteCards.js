@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import { Button, CardActionArea, Divider, styled, useMediaQuery, useTheme } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
-import { useWebsiteContext } from '../../global_functions/WebsiteContext'
 
 export default function WebsiteCards() {
   const [data, setData] = useState(null)
@@ -23,7 +22,6 @@ export default function WebsiteCards() {
 
     getData()
   }, [])
-
 
   const MyCard = styled(Card)({
     '&:hover .overlay': {
@@ -49,20 +47,40 @@ export default function WebsiteCards() {
     transition: 'background-color 0.3s'
   })
 
+  function generateRandomNumber(length) {
+    const min = Math.pow(10, length - 1)
+    const max = Math.pow(10, length) - 1
+
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+  function createPseudoId(websiteId) {
+    // Convert numbers to strings
+    const firstNumber = generateRandomNumber(3).toString()
+    const secondNumber = generateRandomNumber(3).toString()
+    // const firstNumberString = firstNumber.toString();
+    // const secondNumberString = secondNumber.toString();
+    const websiteIdString = websiteId.toString()
+
+    // Concatenate the strings
+    const combinedString = firstNumber + websiteIdString + secondNumber
+
+    // Convert the combined string back to a number
+    const combinedNumber = parseInt(combinedString, 10)
+
+    return combinedNumber
+  }
+
   const navigate = useNavigate()
-  const { setWebsiteIdValue } = useWebsiteContext();
 
+  const handleCardClick = (websiteImageName, websiteId) => {
+    const pseudoId = createPseudoId(websiteId)
 
-  const handleCardClick = (websiteImageName,websiteId) => {
-
-    setWebsiteIdValue(websiteId);
-
-    navigate(`/${websiteImageName}`)
+    navigate(`/${websiteImageName}${pseudoId}`)
   }
   const handleButtonClick = (websiteLink) => {
     // Open the website link in a new tab
-    window.open(websiteLink, '_blank');
-  };
+    window.open(websiteLink, '_blank')
+  }
 
   return (
     <>
