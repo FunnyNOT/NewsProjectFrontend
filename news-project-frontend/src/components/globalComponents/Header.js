@@ -15,6 +15,7 @@ import Button from '@mui/material/Button'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Slide from '@mui/material/Slide'
 import { Link } from 'react-router-dom'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 function HideOnScroll(props) {
   const { children, window } = props
@@ -42,6 +43,8 @@ const drawerWidth = 240
 function DrawerAppBar(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
@@ -50,10 +53,10 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor: '#23282f', height: '100%' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='50' />
+        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='56' />
       </Box>
 
-      <Divider />
+      <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
       <List>
         <ListItem disablePadding>
           <Link to='/' style={{ textDecoration: 'none', width: '100%' }}>
@@ -87,11 +90,11 @@ function DrawerAppBar(props) {
                 aria-label='open drawer'
                 edge='start'
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: 'none' } }}
+                sx={{ mr: 2, display: { sm: 'none' }, width: isSmallScreen ? '10%' : 'auto' }}
               >
                 <MenuIcon />
               </IconButton>
-              <Box width={'50%'}></Box>
+              <Box width={isSmallScreen ? '40%' : '50%'}></Box>
               <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                 <Link to='/' style={{ textDecoration: 'none' }}>
                   <img
