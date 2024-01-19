@@ -24,9 +24,6 @@ export default function WebsiteCards() {
   }, [])
 
   const MyCard = styled(Card)({
-    '&:hover .overlay': {
-      backgroundColor: 'rgba(170, 170, 170, 0.1)'
-    },
     flexDirection: isSmallScreen ? 'column' : 'row', // Dynamic flexDirection based on screen width
     display: 'flex',
     margin: '5px',
@@ -37,15 +34,24 @@ export default function WebsiteCards() {
     alignItems: 'center'
   })
 
-  const Overlay = styled('div')({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'transparent',
-    transition: 'background-color 0.3s'
+  const MyCardActionArea = styled(CardActionArea)({
+    display: 'flex',
+    width: '85%',
+    flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row',
+    '&:hover': {
+      backgroundColor: 'rgba(170, 170, 170, 0.15)' // Change to the color you want on hover
+    }
   })
+
+  // const Overlay = styled('div')({
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   bottom: 0,
+  //   background: 'transparent',
+  //   transition: 'background-color 0.3s'
+  // })
 
   function generateRandomNumber(length) {
     const min = Math.pow(10, length - 1)
@@ -57,14 +63,10 @@ export default function WebsiteCards() {
     // Convert numbers to strings
     const firstNumber = generateRandomNumber(3).toString()
     const secondNumber = generateRandomNumber(3).toString()
-    // const firstNumberString = firstNumber.toString();
-    // const secondNumberString = secondNumber.toString();
     const websiteIdString = websiteId.toString()
 
-    // Concatenate the strings
     const combinedString = firstNumber + websiteIdString + secondNumber
 
-    // Convert the combined string back to a number
     const combinedNumber = parseInt(combinedString, 10)
 
     return combinedNumber
@@ -88,11 +90,8 @@ export default function WebsiteCards() {
         data.map((item, index) => (
           <React.Fragment key={index}>
             <MyCard variant='plain' key={item}>
-              <CardActionArea
-                onClick={() => handleCardClick(item.website_image_name, item.website_id)}
-                style={{ display: 'flex', width: '85%', flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row' }}
-              >
-                <Overlay className='overlay'></Overlay>
+              <MyCardActionArea onClick={() => handleCardClick(item.website_image_name, item.website_id)}>
+                {/* <Overlay className='overlay'></Overlay> */}
                 <CardMedia
                   component='img'
                   image={`${process.env.PUBLIC_URL}/images/${item.website_image_name}.png`}
@@ -118,12 +117,17 @@ export default function WebsiteCards() {
                     {item.website_description.substring(0, isSmallScreen ? '120' : '200') + '...'}
                   </Typography>
                 </CardContent>
-              </CardActionArea>
+              </MyCardActionArea>
               <CardContent
                 style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
               >
                 <Button
                   variant='outlined'
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: 'rgba(170, 170, 170, 0.15)'
+                    }
+                  }}
                   style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '6px' : '10px', borderColor: '#f9f9f9' }}
                   endIcon={<ArrowOutwardIcon />}
                   onClick={() => handleButtonClick(item.website_link)}

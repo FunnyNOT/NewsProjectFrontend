@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react'
 import WebsiteInfoCard from './WebsiteProfilePageComponents/WebsiteInfoCard'
 import ArticleCards from './WebsiteProfilePageComponents/ArticleCards'
 import { DrawerAppBar } from './globalComponents/Header'
-import { createTheme, ThemeProvider, CircularProgress, Typography } from '@mui/material'
+import { createTheme, ThemeProvider, CircularProgress, Typography, Fab } from '@mui/material'
 import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import { fetchArticles } from '../global_functions/ApiDataDisplay'
 import { useLocation } from 'react-router-dom'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 const StyledPage = styled('div')({
   backgroundColor: '#23282f',
@@ -75,6 +76,27 @@ const WebsiteProfilePage = () => {
     return <p>Error: {error}</p>
   }
 
+  const ScrollTop = (props) => {
+    const { children } = props
+
+    const handleClick = () => {
+      const anchor = document.querySelector('#back-to-top-anchor')
+
+      if (anchor) {
+        anchor.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+
+    return (
+      <div onClick={handleClick} role='presentation' style={{ position: 'fixed', bottom: 16, right: 16, cursor: 'pointer' }}>
+        {children}
+      </div>
+    )
+  }
+
   const imageUrl = `${process.env.PUBLIC_URL}/images/${data.website.website_image_name}.png`
   const websiteName = data.website.website_name
   const websiteDescription = data.website.website_description
@@ -85,6 +107,7 @@ const WebsiteProfilePage = () => {
       <StyledPage>
         <DrawerAppBar />
         <Box
+          id='back-to-top-anchor'
           component='section'
           sx={{ marginTop: '80px', marginLeft: '0px', marginBottom: '0px', alignContent: 'center', borderBottom: '1px solid #fff' }}
         >
@@ -102,6 +125,13 @@ const WebsiteProfilePage = () => {
           <Box sx={{ marginTop: '20px' }}>
             <ArticleCards data={data} />
           </Box>
+        </Box>
+        <Box sx={{ height: '100vh', overflowY: 'auto' }}>
+          <ScrollTop {...{ window }}>
+            <Fab color='primary' size='medium' aria-label='scroll back to top'>
+              <KeyboardArrowUpIcon />
+            </Fab>
+          </ScrollTop>
         </Box>
       </StyledPage>
     </ThemeProvider>

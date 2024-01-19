@@ -29,15 +29,6 @@ const WebsiteInfoCard = ({ websiteName, websiteDescription, imageUrl, websiteLin
     alignItems: 'center'
   })
 
-  const StyledButton = styled(Button)({
-    color: '#f9f9f9',
-    fontSize: isSmallScreen ? '8px' : isMediumScreen ? '8px' : '10px',
-    borderColor: '#f9f9f9',
-    '&:hover': {
-      backgroundColor: 'rgba(170, 170, 170, 0.15)'
-    }
-  })
-
   return (
     <MyCard variant='plain'>
       <CardMedia
@@ -72,11 +63,21 @@ const WebsiteInfoCard = ({ websiteName, websiteDescription, imageUrl, websiteLin
         </Typography>
       </CardContent>
       <CardContent style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <StyledButton variant='outlined' endIcon={<ArrowOutwardIcon />} onClick={() => handleButtonClick(websiteLink)}>
+        <Button
+          variant='outlined'
+          sx={{
+            '&:hover': {
+              backgroundColor: 'rgba(170, 170, 170, 0.15)'
+            }
+          }}
+          style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '6px' : '10px', borderColor: '#f9f9f9' }}
+          endIcon={<ArrowOutwardIcon />}
+          onClick={() => handleButtonClick(websiteLink)}
+        >
           Visit
           <br />
           Website
-        </StyledButton>
+        </Button>
       </CardContent>
     </MyCard>
   )
