@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Homepage from './components/Homepage'
 import WebsiteProfilePage from './components/WebsiteProfilePage'
 import AboutUs from './components/AboutUs'
+import Login from './components/Registration_draft'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' exact element={<Homepage />} />
         <Route path='/:websiteImageName' element={<WebsiteProfilePage />} />
         <Route path='/about' exact element={<AboutUs />} />
+        <Route path='/login' exact element={<Login />} />
       </Routes>
     </Router>
   )
