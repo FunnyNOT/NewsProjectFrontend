@@ -4,6 +4,7 @@ import Homepage from './components/Homepage'
 import WebsiteProfilePage from './components/WebsiteProfilePage'
 import AboutUs from './components/AboutUs'
 import Login from './components/Registration_draft'
+import YourComponent from './components/TestingLogin'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/:websiteImageName' element={<WebsiteProfilePage />} />
         <Route path='/about' exact element={<AboutUs />} />
         <Route path='/login' exact element={<Login />} />
+        <Route path='/login_testing' exact element= {<YourComponent />} />
       </Routes>
     </Router>
   )
