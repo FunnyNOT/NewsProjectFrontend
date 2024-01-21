@@ -1,18 +1,9 @@
 <!-- Intro  -->
-<h2 align="center">
+<h1 align="center">
         News-Project Frontend
-</h2>
+</h1>
+<br>
 
-<p align="center">
- <a href="https://www.linkedin.com/in/leonidas-oikonomou-163207181/" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
- </a>
-</p>
-
-<br/>
-<br/>
-
-## Tech used
 ![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
@@ -21,14 +12,20 @@
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
 
-<br/>
 
-<br>
+## Contributors
+
+### **Leonidas Oikonomou** <a href="https://www.linkedin.com/in/leonidas-oikonomou-163207181/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
+
+
+### **Kostantinos Alexandridhs** <a href="https://www.linkedin.com/in/k-alexandridis/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
+
+### **Spyros Statholopoulos** <a href="https://www.linkedin.com/in/spyros-stathoulopoulos-67538b225/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
+
 
 ## Live Demo
 **Explore the live version of the application [here](https://main.dt692ul0ojwbf.amplifyapp.com/).**
 
-</br>
 
 
 ## Description
