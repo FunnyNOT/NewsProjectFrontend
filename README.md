@@ -23,6 +23,13 @@
 
 <br/>
 
+<br>
+
+## Live Demo
+**Explore the live version of the application [here](https://main.dt692ul0ojwbf.amplifyapp.com/).**
+
+</br>
+
 
 ## Description
 
