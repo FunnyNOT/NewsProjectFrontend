@@ -43,16 +43,6 @@ export default function WebsiteCards() {
     }
   })
 
-  // const Overlay = styled('div')({
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   right: 0,
-  //   bottom: 0,
-  //   background: 'transparent',
-  //   transition: 'background-color 0.3s'
-  // })
-
   function generateRandomNumber(length) {
     const min = Math.pow(10, length - 1)
     const max = Math.pow(10, length) - 1
