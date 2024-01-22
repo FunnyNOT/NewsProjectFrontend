@@ -26,6 +26,9 @@ const theme = createTheme({
     primary: {
       main: '#23282f'
     }
+  },
+  typography: {
+    fontFamily: 'League Spartan, sans-serif'
   }
 })
 

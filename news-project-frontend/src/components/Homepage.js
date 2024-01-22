@@ -5,6 +5,7 @@ import Box from '@mui/system/Box'
 import { styled } from '@mui/material'
 import { createTheme, ThemeProvider, Fab } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import '@fontsource/league-spartan'
 
 const StyledHomePage = styled('div')({
   backgroundColor: '#23282f',
@@ -24,6 +25,9 @@ const theme = createTheme({
     primary: {
       main: '#23282f'
     }
+  },
+  typography: {
+    fontFamily: 'League Spartan, sans-serif'
   }
 })
 
