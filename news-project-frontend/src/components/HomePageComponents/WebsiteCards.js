@@ -31,7 +31,7 @@ export default function WebsiteCards() {
     backgroundColor: '#23282f',
     width: '100%',
     // height: isSmallScreen ? '350px' : isMediumScreen ? '300px' : '220px',
-    height: isSmallScreen ? '90px' : isMediumScreen ? '180px' : '220px',
+    height: isSmallScreen ? '105px' : isMediumScreen ? '180px' : '220px',
     justifyContent: 'center',
     alignItems: 'center'
   })
@@ -103,14 +103,14 @@ export default function WebsiteCards() {
                     gutterBottom
                     variant='h5'
                     component='div'
-                    style={{ color: '#da292f', fontSize: isSmallScreen ? '12px' : isMediumScreen ? '16px' : '25px' }}
+                    style={{ color: '#da292f', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '16px' : '25px' }}
                   >
                     {item.website_name}
                   </Typography>
                   <Typography
                     variant='body1'
                     color='text.secondary'
-                    style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '8px' : isMediumScreen ? '12px' : '18px' }}
+                    style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '12px' : '18px' }}
                   >
                     {item.website_description.substring(0, isSmallScreen ? '100' : isMediumScreen ? '150' : '350') + '...'}
                   </Typography>
