@@ -91,7 +91,7 @@ export default function WebsiteCards() {
                   alt='green iguana'
                   // style={{ width: isSmallScreen ? '100%' : isMediumScreen ? '45%' : '25%', objectFit: 'cover', borderRadius: '10px' }}
                   style={{
-                    width: isSmallScreen ? '35%' : isMediumScreen ? '30%' : '25%',
+                    width:'25%',
                     height: isSmallScreen ? '80%' : isMediumScreen ? '50%' : '25%',
                     objectFit: isSmallScreen ? 'scale-down' : 'scale-down',
                     borderRadius: '10px',
