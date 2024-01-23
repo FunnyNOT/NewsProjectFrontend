@@ -64,10 +64,10 @@ const ScrollTop = (props) => {
 const AboutUs = () => {
   return (
     <ThemeProvider theme={theme}>
-      <StyledPage>
+      <StyledPage id='back-to-top-anchor'>
         <DrawerAppBar />
 
-        <Box component='section' id='back-to-top-anchor' sx={{ marginTop: '35px' }}>
+        <Box component='section' sx={{ marginTop: '35px' }}>
           <AboutUsCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>

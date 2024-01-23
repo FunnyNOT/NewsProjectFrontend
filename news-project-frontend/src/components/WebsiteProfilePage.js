@@ -39,7 +39,8 @@ function createWebsiteId(number) {
   return modifiedNumber
 }
 function getWebsiteId(pathname) {
-  const pseudoIdString = pathname.replace(/[^0-9]/g, '')
+  const lastSlashIndex = pathname.lastIndexOf('/')
+  const pseudoIdString = pathname.substring(lastSlashIndex + 1)
   const pseudoId = parseInt(pseudoIdString, 10)
   const websiteId = createWebsiteId(pseudoId)
   return websiteId
@@ -67,7 +68,6 @@ const WebsiteProfilePage = () => {
   }, [websiteId])
 
   if (loading) {
-    // return <p>Loading...</p>
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#23282f' }}>
         <CircularProgress size={30} color='primary' thickness={4} />
@@ -107,10 +107,9 @@ const WebsiteProfilePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledPage>
+      <StyledPage id='back-to-top-anchor'>
         <DrawerAppBar />
         <Box
-          id='back-to-top-anchor'
           component='section'
           sx={{ marginTop: '80px', marginLeft: '0px', marginBottom: '0px', alignContent: 'center', borderBottom: '1px solid #fff' }}
         >
