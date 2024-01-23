@@ -24,20 +24,24 @@ export default function WebsiteCards() {
   }, [])
 
   const MyCard = styled(Card)({
-    flexDirection: isSmallScreen ? 'column' : 'row', // Dynamic flexDirection based on screen width
+    // flexDirection: isSmallScreen ? 'column' : 'row',
+    flexDirection: 'row',
     display: 'flex',
-    margin: '5px',
+    marginBottom: isSmallScreen ? '-15px' : isMediumScreen ? '5px' : '20px', // Adjust the margin between cards
     backgroundColor: '#23282f',
     width: '100%',
-    height: isSmallScreen ? '350px' : isMediumScreen ? '300px' : '220px',
+    // height: isSmallScreen ? '350px' : isMediumScreen ? '300px' : '220px',
+    height: isSmallScreen ? '90px' : isMediumScreen ? '180px' : '220px',
     justifyContent: 'center',
     alignItems: 'center'
   })
 
   const MyCardActionArea = styled(CardActionArea)({
     display: 'flex',
-    width: '85%',
-    flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row',
+    width: isSmallScreen ? '100%' : '85%',
+    height: isSmallScreen ? '80%' : 'auto',
+    // flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row',
+    flexDirection: 'row',
     '&:hover': {
       backgroundColor: 'rgba(170, 170, 170, 0.15)' // Change to the color you want on hover
     }
@@ -67,7 +71,7 @@ export default function WebsiteCards() {
   const handleCardClick = (websiteImageName, websiteId) => {
     const pseudoId = createPseudoId(websiteId)
 
-    navigate(`/${websiteImageName}${pseudoId}`)
+    navigate(`/${websiteImageName}/${pseudoId}`)
   }
   const handleButtonClick = (websiteLink) => {
     // Open the website link in a new tab
@@ -79,57 +83,74 @@ export default function WebsiteCards() {
       {data &&
         data.map((item, index) => (
           <React.Fragment key={index}>
-            <MyCard variant='plain' key={item}>
+            <MyCard variant={isSmallScreen ? 'outlined' : 'plain'} style={{ borderColor: '#f9f9f9', borderRadius: '10px' }} key={item}>
               <MyCardActionArea onClick={() => handleCardClick(item.website_image_name, item.website_id)}>
-                {/* <Overlay className='overlay'></Overlay> */}
                 <CardMedia
                   component='img'
                   image={`${process.env.PUBLIC_URL}/images/${item.website_image_name}.png`}
                   alt='green iguana'
-                  style={{ width: isSmallScreen ? '100%' : isMediumScreen ? '45%' : '25%', objectFit: 'cover', borderRadius: '10px' }}
+                  // style={{ width: isSmallScreen ? '100%' : isMediumScreen ? '45%' : '25%', objectFit: 'cover', borderRadius: '10px' }}
+                  style={{
+                    width: isSmallScreen ? '35%' : isMediumScreen ? '30%' : '25%',
+                    height: isSmallScreen ? '80%' : isMediumScreen ? '50%' : '25%',
+                    objectFit: isSmallScreen ? 'scale-down' : 'scale-down',
+                    borderRadius: '10px',
+                    marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px'
+                  }}
                 />
-
                 <CardContent>
                   <Typography
                     gutterBottom
                     variant='h5'
                     component='div'
-                    style={{ color: '#da292f', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px' }}
+                    style={{ color: '#da292f', fontSize: isSmallScreen ? '12px' : isMediumScreen ? '16px' : '25px' }}
                   >
                     {item.website_name}
                   </Typography>
-
                   <Typography
                     variant='body1'
                     color='text.secondary'
-                    style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '14px' : '18px' }}
+                    style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '8px' : isMediumScreen ? '12px' : '18px' }}
                   >
-                    {item.website_description.substring(0, isSmallScreen ? '120' : '200') + '...'}
+                    {item.website_description.substring(0, isSmallScreen ? '100' : isMediumScreen ? '150' : '350') + '...'}
                   </Typography>
                 </CardContent>
               </MyCardActionArea>
-              <CardContent
-                style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
-              >
-                <Button
-                  variant='outlined'
-                  sx={{
-                    '&:hover': {
-                      backgroundColor: 'rgba(170, 170, 170, 0.15)'
-                    }
-                  }}
-                  style={{ color: '#f9f9f9', fontSize: isSmallScreen ? '6px' : '10px', borderColor: '#f9f9f9' }}
-                  endIcon={<ArrowOutwardIcon />}
-                  onClick={() => handleButtonClick(item.website_link)}
-                >
-                  Visit
-                  <br />
-                  Website
-                </Button>
-              </CardContent>
-            </MyCard>
 
-            <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
+              {!isSmallScreen && (
+                <CardContent
+                  style={{ flex: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end' }}
+                >
+                  <Button
+                    variant='outlined'
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: 'rgba(170, 170, 170, 0.15)'
+                      }
+                    }}
+                    style={{
+                      color: '#f9f9f9',
+                      fontSize: isSmallScreen ? '6px' : '10px',
+                      borderColor: '#f9f9f9',
+                      marginRight: isMediumScreen ? '20px' : '50px'
+                    }}
+                    endIcon={<ArrowOutwardIcon />}
+                    onClick={() => handleButtonClick(item.website_link)}
+                  >
+                    Visit
+                    <br />
+                    Website
+                  </Button>
+                </CardContent>
+              )}
+            </MyCard>
+            <Divider
+              sx={{
+                display: { xs: 'none', sm: 'block', md: 'flex' },
+                color: '#f9f9f9',
+                borderColor: '#f9f9f9'
+              }}
+            />
             <br />
           </React.Fragment>
         ))}

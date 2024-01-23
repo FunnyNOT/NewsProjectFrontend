@@ -53,7 +53,7 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
           sx={{ height: 'auto' }}
           title='oops'
           style={{
-            width: isSmallScreen ? '50%' : isMediumScreen ? '45%' : '25%',
+            width: isSmallScreen ? '70%' : isMediumScreen ? '45%' : '25%',
             objectFit: 'cover',
             borderRadius: '10px',
             marginLeft: '-10%',
@@ -68,11 +68,11 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
           sx={{ border: '1px solid #f9f9f9' }}
           title='Default Image'
           style={{
-            width: isSmallScreen ? '50%' : isMediumScreen ? '35%' : '25%',
-            objectFit: 'cover',
+            width: isSmallScreen ? '40%' : isMediumScreen ? '35%' : '25%',
+            objectFit: 'scale-down',
             borderRadius: '10px',
             marginLeft: '-10%',
-            height: isSmallScreen ? '25%' : isMediumScreen ? '35%' : '80%'
+            height: isSmallScreen ? '25%' : isMediumScreen ? '35%' : '70%'
           }}
         />
       )}

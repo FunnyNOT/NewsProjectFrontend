@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' exact element={<Homepage />} />
-        <Route path='/:websiteImageName' element={<WebsiteProfilePage />} />
+        <Route path='/:websiteImageName/:pseudoId' element={<WebsiteProfilePage />} />
         <Route path='/about' exact element={<AboutUs />} />
       </Routes>
     </Router>
