@@ -14,7 +14,7 @@ function App() {
         <Route path='/:websiteImageName' element={<WebsiteProfilePage />} />
         <Route path='/about' exact element={<AboutUs />} />
         <Route path='/login' exact element={<Login />} />
-        <Route path='/login_testing' exact element= {<YourComponent />} />
+        <Route path='/login_testing' exact element={<YourComponent />} />
       </Routes>
     </Router>
   )
