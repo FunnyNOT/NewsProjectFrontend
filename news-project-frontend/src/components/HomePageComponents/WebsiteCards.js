@@ -93,9 +93,9 @@ export default function WebsiteCards() {
                   style={{
                     width:'25%',
                     height: isSmallScreen ? '80%' : isMediumScreen ? '50%' : '25%',
+                    marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px',
                     objectFit: isSmallScreen ? 'scale-down' : 'scale-down',
                     borderRadius: '10px',
-                    marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px'
                   }}
                 />
                 <CardContent>
