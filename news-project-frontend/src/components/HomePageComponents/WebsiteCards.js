@@ -71,7 +71,7 @@ export default function WebsiteCards() {
   const handleCardClick = (websiteImageName, websiteId) => {
     const pseudoId = createPseudoId(websiteId)
 
-    navigate(`/${websiteImageName}/${pseudoId}`)
+    navigate(`/${pseudoId}/${websiteImageName}`)
   }
   const handleButtonClick = (websiteLink) => {
     // Open the website link in a new tab
@@ -91,7 +91,7 @@ export default function WebsiteCards() {
                   alt='green iguana'
                   // style={{ width: isSmallScreen ? '100%' : isMediumScreen ? '45%' : '25%', objectFit: 'cover', borderRadius: '10px' }}
                   style={{
-                    width:'25%',
+                    width: '25%',
                     height: isSmallScreen ? '80%' : isMediumScreen ? '50%' : '25%',
                     marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px',
                     objectFit: isSmallScreen ? 'scale-down' : 'scale-down',
