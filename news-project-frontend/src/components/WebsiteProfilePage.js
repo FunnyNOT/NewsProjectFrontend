@@ -32,17 +32,10 @@ const theme = createTheme({
   }
 })
 
-function createWebsiteId(number) {
-  const numberString = number.toString()
-  const modifiedString = numberString.slice(3, -3)
-  const modifiedNumber = parseInt(modifiedString, 10)
-  return modifiedNumber
-}
 function getWebsiteId(pathname) {
-  const lastSlashIndex = pathname.lastIndexOf('/')
-  const pseudoIdString = pathname.substring(lastSlashIndex + 1)
-  const pseudoId = parseInt(pseudoIdString, 10)
-  const websiteId = createWebsiteId(pseudoId)
+  const splitted_pathname = pathname.split('/')[1]
+  const websiteId = parseInt(splitted_pathname.slice(3, -3), 10)
+
   return websiteId
 }
 const WebsiteProfilePage = () => {
