@@ -1,4 +1,3 @@
-import { useAuth } from '../contexts/AuthContext';
 import { getSessionToken } from './GetSessionToken';
 
 // This is now a custom hook, so it starts with "use"
@@ -11,12 +10,16 @@ export const useAuthenticateUser = () => {
     if (!sessionToken) {
       // Session token not found, prompt the user to login
       // You might redirect or show a login modal here
-      console.log('No session token found. Prompt the user to login.');
       return false;
     }
     
     // Session token exists, validate it with the backend
     const response = await checkSessionToken(sessionToken);
+    if (!response.ok) {
+      // Session token is invalid, prompt the user to login
+      // You might redirect or show a login modal here
+      return false;
+    }
     return response.json();
   };
 

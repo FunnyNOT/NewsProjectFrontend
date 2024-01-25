@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const YourComponent = () => {
   // Use the useAuthenticateUser hook
   const { user } = useAuth();
-
-  // Your component rendering logic here
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (user === false) {
+      navigate('/login');
+    } 
+  }, [user, navigate]);
+  
+  if (!user) {
+    return <div>Loading...</div>; 
+  }
 
   return (
     <div>

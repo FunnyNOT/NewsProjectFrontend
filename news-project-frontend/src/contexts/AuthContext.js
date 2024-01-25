@@ -17,19 +17,22 @@ export const AuthProvider = ({ children }) => {
         }
         // Attempt to authenticate the user
         const authenticatedUser = await authenticateUser();
-        console.log('authenticatedUser:', authenticatedUser);
+        
         if (authenticatedUser) {
           // If authentication is successful, set the user in the context
           setUser(authenticatedUser.user);
+        } else {
+          setUser(false);
         }
       } catch (error) {
+        setUser(false);
         console.error('Error during user initialization:', error);
       }
     };
 
     // Call the asynchronous function to initialize the user
     initializeUser();
-  }, [authenticateUser]);
+  }, [user, authenticateUser]);
 
 
   const login = (userData) => {
