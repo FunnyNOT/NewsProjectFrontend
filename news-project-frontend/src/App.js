@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' exact element={<Homepage />} />
-        <Route path='/:websiteImageName' element={<WebsiteProfilePage />} />
+        <Route path='/:pseudoId/:websiteImageName' element={<WebsiteProfilePage />} />
         <Route path='/about' exact element={<AboutUs />} />
         <Route path='/login' exact element={<Login />} />
         <Route path='/login_testing' exact element={<YourComponent />} />

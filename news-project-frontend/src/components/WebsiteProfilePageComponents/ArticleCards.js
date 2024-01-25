@@ -1,7 +1,8 @@
 import React from 'react'
-import { Typography, Grid, Card, CardMedia, CardContent, styled } from '@mui/material'
+import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 
 const ArticleCards = ({ data }) => {
   return (
@@ -32,66 +33,118 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
 
   const MyCard = styled(Card)({
-    flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'column' : 'row',
+    // flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'column' : 'row',
+    flexDirection: 'row',
     display: 'flex',
-    marginLeft: isSmallScreen ? '0%' : isMediumScreen ? '5%' : '10%',
+    marginLeft: isSmallScreen ? '2%' : isMediumScreen ? '5%' : '10%',
     marginRight: isSmallScreen ? '0%' : isMediumScreen ? '5%' : '10%',
-    backgroundColor: '#23282f',
-    width: isSmallScreen ? '100%' : isMediumScreen ? '90%' : '80%',
+    backgroundColor: isImageAvailable ? '#23282f': '#EAF4FC',
+    width: isSmallScreen ? '95%' : isMediumScreen ? '90%' : '80%',
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    variant: isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain'
   })
 
+  const handleButtonClick = (websiteLink) => {
+    window.open(websiteLink, '_blank')
+  }
+
   return (
-    <MyCard variant='plain' sx={{ marginBottom: '10px' }}>
-      {isImageAvailable ? (
-        <CardMedia
-          component='img'
-          alt={title}
-          image={image}
-          sx={{ height: 'auto' }}
-          title='oops'
-          style={{
-            width: isSmallScreen ? '50%' : isMediumScreen ? '45%' : '25%',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            marginLeft: '-10%',
-            height: isSmallScreen ? '25%' : isMediumScreen ? '35%' : '80%'
-          }}
-        />
-      ) : (
-        <CardMedia
-          component='img'
-          alt={title}
-          image={defaultImageUrl}
-          sx={{ border: '1px solid #f9f9f9' }}
-          title='Default Image'
-          style={{
-            width: isSmallScreen ? '50%' : isMediumScreen ? '35%' : '25%',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            marginLeft: '-10%',
-            height: isSmallScreen ? '25%' : isMediumScreen ? '35%' : '80%'
-          }}
-        />
-      )}
-      <CardContent style={{ width: isSmallScreen ? '90%' : isMediumScreen ? '80%' : '65%' }}>
-        <Typography variant='body1' style={{ color: '#da292f' }}>
-          {title}
-        </Typography>
-        <Typography variant='caption' style={{ color: '#EAF4FC', width: isSmallScreen ? '95%' : isMediumScreen ? '85%' : '75%' }}>
-          {summary}
-        </Typography>
-        <a href={link} target='_blank' rel='noopener noreferrer' variant='caption'>
-          Read more
-        </a>
-        <br></br>
-        <Typography variant='caption' style={{ color: '#EAF4FC', fontStyle: 'italic' }}>
-          {published}
-        </Typography>
-      </CardContent>
-    </MyCard>
+    <>
+      <MyCard
+        variant={isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain'}
+        style={{ borderColor: '#f9f9f9', borderRadius: '10px', marginBottom: isSmallScreen ? '0px' : isMediumScreen ? '0px' : '10px'}}
+      >
+        {
+          isImageAvailable && (
+            <CardMedia
+              component='img'
+              alt={title}
+              image={image}
+              sx={{ height: 'auto' }}
+              title='oops'
+              style={{
+                width: '30%',
+                objectFit: 'cover',
+                height: isSmallScreen ? '100%' : isMediumScreen ? '50%' : '25%',
+                marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px'
+              }}
+              onError={(e) => {
+                e.target.src = defaultImageUrl;
+              }}
+            />
+          )          
+        }
+        <CardContent style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1 }}>
+            <Typography variant='body1' style={{ color: '#da292f', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '16px' : '25px' }}>
+              {title}
+            </Typography>
+            {!isImageAvailable &&(
+              <Divider style={{ width: '100%', borderBottom: '1px solid #23282f', marginTop:'10px' }} />
+            )}
+            <Box style={{ marginTop:isImageAvailable ? 'auto': '15px'}}>
+            <Typography
+              variant='caption'
+              style={{ color: isImageAvailable ? '#EAF4FC': '#23282f', width: '100%', fontSize: isSmallScreen ? '9px' : isMediumScreen ? '12px' : '18px' }}
+            >
+              {summary}
+            </Typography>
+            {!isImageAvailable &&(
+              <Divider style={{ width: '100%', borderBottom: '1px solid #23282f', marginTop:'20px' }} />
+            )}
+            </Box>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <div>
+              <Typography
+                variant='caption'
+                style={{ color: isImageAvailable ? '#EAF4FC': '#23282f', fontStyle: 'italic', fontSize: isSmallScreen ? '9px' : isMediumScreen ? '12px' : '18px' }}
+              >
+                {published}
+              </Typography>
+            </div>
+            {/* {!isSmallScreen && ( */}
+            <div>
+              <Button
+                variant='outlined'
+                sx={{
+                  '&:hover': {
+                    backgroundColor: 'rgba(170, 170, 170, 0.15)'
+                  }
+                }}
+                style={{
+                  color: isImageAvailable ? '#EAF4FC': '#23282f',
+                  fontSize: isSmallScreen ? '6px' : '12px',
+                  borderColor: isImageAvailable ? '#EAF4FC': '#23282f',
+                  marginLeft: 'auto',
+                  marginTop: isSmallScreen ? '10px' : isMediumScreen ? '25px' : '35px',
+                  padding: isSmallScreen ? '0' : 'auto',
+                  paddingTop: isSmallScreen ? '5px' : 'auto',
+                  paddingBottom: isSmallScreen ? '5px' : 'auto'
+                }}
+                endIcon={<ArrowOutwardIcon />}
+                onClick={() => handleButtonClick(link)}
+              >
+                Visit
+                <br />
+                Article
+              </Button>
+            </div>
+            {/* )} */}
+          </div>
+        </CardContent>
+      </MyCard>
+      <Divider
+        sx={{
+          color: '#f9f9f9',
+          borderColor: '#f9f9f9',
+          marginLeft: '5%',
+          marginRight: '5%'
+        }}
+      />
+    </>
   )
 }
 

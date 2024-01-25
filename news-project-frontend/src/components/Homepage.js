@@ -5,6 +5,7 @@ import Box from '@mui/system/Box'
 import { styled } from '@mui/material'
 import { createTheme, ThemeProvider, Fab } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import '@fontsource/league-spartan'
 
 const StyledHomePage = styled('div')({
   backgroundColor: '#23282f',
@@ -24,6 +25,9 @@ const theme = createTheme({
     primary: {
       main: '#23282f'
     }
+  },
+  typography: {
+    fontFamily: 'League Spartan, sans-serif'
   }
 })
 
@@ -51,10 +55,9 @@ const ScrollTop = (props) => {
 const Homepage = () => {
   return (
     <ThemeProvider theme={theme}>
-      <StyledHomePage>
+      <StyledHomePage id='back-to-top-anchor'>
         <DrawerAppBar />
-
-        <Box component='section' id='back-to-top-anchor' sx={{ p: 10 }}>
+        <Box component='section' sx={{ p: 2, marginTop: '60px' }}>
           <WebsiteCards />
         </Box>
         <Box sx={{ height: '100vh', overflowY: 'auto' }}>

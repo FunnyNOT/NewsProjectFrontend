@@ -26,19 +26,16 @@ const theme = createTheme({
     primary: {
       main: '#23282f'
     }
+  },
+  typography: {
+    fontFamily: 'League Spartan, sans-serif'
   }
 })
 
-function createWebsiteId(number) {
-  const numberString = number.toString()
-  const modifiedString = numberString.slice(3, -3)
-  const modifiedNumber = parseInt(modifiedString, 10)
-  return modifiedNumber
-}
 function getWebsiteId(pathname) {
-  const pseudoIdString = pathname.replace(/[^0-9]/g, '')
-  const pseudoId = parseInt(pseudoIdString, 10)
-  const websiteId = createWebsiteId(pseudoId)
+  const splitted_pathname = pathname.split('/')[1]
+  const websiteId = parseInt(splitted_pathname.slice(3, -3), 10)
+
   return websiteId
 }
 const WebsiteProfilePage = () => {
@@ -64,7 +61,6 @@ const WebsiteProfilePage = () => {
   }, [websiteId])
 
   if (loading) {
-    // return <p>Loading...</p>
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#23282f' }}>
         <CircularProgress size={30} color='primary' thickness={4} />
@@ -104,10 +100,9 @@ const WebsiteProfilePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledPage>
+      <StyledPage id='back-to-top-anchor'>
         <DrawerAppBar />
         <Box
-          id='back-to-top-anchor'
           component='section'
           sx={{ marginTop: '80px', marginLeft: '0px', marginBottom: '0px', alignContent: 'center', borderBottom: '1px solid #fff' }}
         >
