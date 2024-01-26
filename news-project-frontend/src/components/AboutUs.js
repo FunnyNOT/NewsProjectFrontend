@@ -22,8 +22,8 @@ const StyledPage = styled('div')({
   margin: 0, // Reset margin
   padding: 0, // Reset padding
   overflowX: 'hidden', // Prevent horizontal scrollbar
-  position: 'relative', // Ensure relative positioning for the "Back to Top" button
-  maxHeight: '100vh'
+  position: 'relative' // Ensure relative positioning for the "Back to Top" button
+  // maxHeight: '2800px'
 })
 
 const theme = createTheme({
@@ -67,8 +67,7 @@ const AboutUs = () => {
     <ThemeProvider theme={theme}>
       <StyledPage id='back-to-top-anchor'>
         <DrawerAppBar />
-
-        <Box component='section' sx={{ marginTop: '35px' }}>
+        <Box component='section' sx={{ marginTop: '55px' }}>
           <AboutUsCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>

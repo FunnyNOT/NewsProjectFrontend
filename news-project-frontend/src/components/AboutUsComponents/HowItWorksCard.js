@@ -56,7 +56,7 @@ const HowItWorksCard = () => {
                   <img
                     src={`${process.env.PUBLIC_URL}/images/logo.png`}
                     alt='Newsify Logo'
-                    style={{ width: '58px', height: 'auto', marginBottom: '5px', marginRight: '3px', verticalAlign: 'middle' }}
+                    style={{ width: '64px', height: 'auto', marginBottom: '0px', marginRight: '3px', verticalAlign: 'middle' }}
                   />{' '}
                   aggregates news articles from a diverse range of reputable sources across the web. Our advanced algorithms analyze and
                   categorize the content, allowing you to tailor your news feed based on topics that matter most to you. Whether you're
@@ -85,7 +85,7 @@ const HowItWorksCard = () => {
                   <img
                     src={`${process.env.PUBLIC_URL}/images/logo.png`}
                     alt='Newsify Logo'
-                    style={{ width: '68px', height: 'auto', marginBottom: '5px', marginRight: '3px', verticalAlign: 'middle' }}
+                    style={{ width: '75px', height: 'auto', marginBottom: '0px', marginRight: '3px', verticalAlign: 'middle' }}
                   />{' '}
                   aggregates news articles from a diverse range of reputable sources across the web. Our advanced algorithms analyze and
                   categorize the content, allowing you to tailor your news feed based on topics that matter most to you. Whether you're
@@ -102,7 +102,7 @@ const HowItWorksCard = () => {
                   <img
                     src={`${process.env.PUBLIC_URL}/images/logo.png`}
                     alt='Newsify Logo'
-                    style={{ width: '80px', height: 'auto', marginBottom: '5px', marginRight: '3px', verticalAlign: 'middle' }}
+                    style={{ width: '120px', height: 'auto', marginBottom: '0px', marginRight: '3px', verticalAlign: 'middle' }}
                   />{' '}
                   aggregates news articles from a diverse range of reputable sources across the web. Our advanced algorithms analyze and
                   categorize the content, allowing you to tailor your news feed based on topics that matter most to you. Whether you're

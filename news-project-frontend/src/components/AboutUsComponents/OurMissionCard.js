@@ -62,9 +62,9 @@ const OurMissionCard = () => {
                 src={`${process.env.PUBLIC_URL}/images/logo.png`}
                 alt='Newsify Logo'
                 style={{
-                  width: isSmallScreen ? '58px' : isMediumScreen ? '68px' : '80px',
+                  width: isSmallScreen ? '64px' : isMediumScreen ? '75px' : '120px',
                   height: 'auto',
-                  marginBottom: '5px',
+                  marginBottom: '0px',
                   marginRight: '3px',
                   verticalAlign: 'middle'
                 }}
