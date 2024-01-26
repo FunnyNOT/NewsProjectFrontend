@@ -18,6 +18,7 @@ const StyledHomePage = styled('div')({
   padding: 0, // Reset padding
   overflowX: 'hidden', // Prevent horizontal scrollbar
   position: 'relative' // Ensure relative positioning for the "Back to Top" button
+  // maxHeight: '100vh'
 })
 
 const theme = createTheme({

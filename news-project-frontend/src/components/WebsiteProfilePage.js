@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import WebsiteInfoCard from './WebsiteProfilePageComponents/WebsiteInfoCard'
 import ArticleCards from './WebsiteProfilePageComponents/ArticleCards'
 import { DrawerAppBar } from './globalComponents/Header'
-import { createTheme, ThemeProvider, CircularProgress, Typography, Fab } from '@mui/material'
+import { createTheme, ThemeProvider, CircularProgress, Typography, Fab, Divider } from '@mui/material'
 import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import { fetchArticles } from '../global_functions/ApiDataDisplay'
@@ -18,7 +18,8 @@ const StyledPage = styled('div')({
   width: '100%',
   margin: 0, // Reset margin
   padding: 0, // Reset padding
-  overflowX: 'hidden' // Prevent horizontal scrollbar
+  overflowX: 'hidden', // Prevent horizontal scrollbar
+  maxHeight: '100vh'
 })
 
 const theme = createTheme({
@@ -114,10 +115,10 @@ const WebsiteProfilePage = () => {
           />
         </Box>
         <Box component='section' sx={{ marginLeft: '0px', alignContent: 'center' }}>
-          <Box sx={{ width: '100%', backgroundColor: '#fff', marginTop: '-20px', marginBottom: '80px' }}>
+          <Box sx={{ width: '100%', backgroundColor: '#fff', marginTop: '-20px', marginBottom: '40px' }}>
             <Typography style={{ textAlign: 'center', fontSize: '24px' }}>Latest News</Typography>
           </Box>
-          <Box sx={{ marginTop: '20px' }}>
+          <Box sx={{ marginTop: '0px' }}>
             <ArticleCards data={data} />
           </Box>
         </Box>
