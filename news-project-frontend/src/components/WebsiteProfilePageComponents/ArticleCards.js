@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider, Box } from '@mui/material'
+import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
