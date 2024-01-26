@@ -53,7 +53,7 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor: '#23282f', height: '100%' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='56' />
+        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='56px' />
       </Box>
 
       <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
@@ -100,8 +100,8 @@ function DrawerAppBar(props) {
                   <img
                     src={`${process.env.PUBLIC_URL}/images/logo.png`}
                     alt='Logo'
-                    height='40'
-                    style={{ transform: 'translateX(-50%)', userSelect: 'none' }}
+                    height='50'
+                    style={{ transform: 'translateX(-50%)', userSelect: 'none', marginTop: '8px' }}
                   />
                 </Link>
               </Box>

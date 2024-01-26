@@ -95,7 +95,7 @@ export default function WebsiteCards() {
                     height: isSmallScreen ? '80%' : isMediumScreen ? '50%' : '25%',
                     marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px',
                     objectFit: isSmallScreen ? 'scale-down' : 'scale-down',
-                    borderRadius: '10px',
+                    borderRadius: '10px'
                   }}
                 />
                 <CardContent>
@@ -103,7 +103,7 @@ export default function WebsiteCards() {
                     gutterBottom
                     variant='h5'
                     component='div'
-                    style={{ color: '#da292f', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '16px' : '25px' }}
+                    style={{ color: '#d69818', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '16px' : '25px' }}
                   >
                     {item.website_name}
                   </Typography>
