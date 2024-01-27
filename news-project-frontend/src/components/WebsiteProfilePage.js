@@ -100,9 +100,10 @@ const WebsiteProfilePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledPage id='back-to-top-anchor'>
+      <StyledPage>
         <DrawerAppBar />
         <Box
+          id='back-to-top-anchor'
           component='section'
           sx={{ marginTop: '80px', marginLeft: '0px', marginBottom: '0px', alignContent: 'center', borderBottom: '1px solid #fff' }}
         >

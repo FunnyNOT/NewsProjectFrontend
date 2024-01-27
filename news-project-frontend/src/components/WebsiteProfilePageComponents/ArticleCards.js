@@ -1,8 +1,9 @@
 import React from 'react'
-import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider } from '@mui/material'
+import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import ArticleSummaryModal from './ArticleSummaryModal'
 
 const ArticleCards = ({ data }) => {
   return (
@@ -113,18 +114,10 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                 }}
               />
             )}
-            {/* <Box style={{ marginTop:isImageAvailable ? 'auto': '15px'}}>
-            <Typography
-              variant='caption'
-              style={{ color: isImageAvailable ? '#EAF4FC': '#23282f', width: '100%', fontSize: isSmallScreen ? '9px' : isMediumScreen ? '12px' : '18px' }}
-            >
-              {summary}
-            </Typography>
-            {!isImageAvailable &&(
-              <Divider style={{ width: '100%', borderBottom: '1px solid #23282f', marginTop:'20px' }} />
-            )}
-            </Box> */}
           </div>
+          <Box style={{ marginTop: '10px' }}>
+            <ArticleSummaryModal title={title} summary={summary} link={link} published={published} />
+          </Box>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <div>
               <Typography
@@ -152,7 +145,7 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                   fontSize: isSmallScreen ? '5px' : '10px',
                   borderColor: isImageAvailable ? '#EAF4FC' : '#23282f',
                   marginLeft: '10px',
-                  marginTop: isSmallScreen ? '10px' : isMediumScreen ? '25px' : '35px',
+                  marginTop: isSmallScreen ? '5px' : isMediumScreen ? '15px' : '25px',
                   padding: isSmallScreen ? '0' : 'auto',
                   paddingTop: isSmallScreen ? '3px' : 'auto',
                   paddingBottom: isSmallScreen ? '3px' : 'auto'
