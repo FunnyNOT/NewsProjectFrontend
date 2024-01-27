@@ -24,6 +24,12 @@ const style = {
   paddingTop: '10px'
 }
 
+const scrollableStyle = {
+  overflowY: 'auto',
+  maxHeight: '250px', 
+  paddingRight: '5px',
+};
+
 export default function ArticleSummaryModal({ title, summary, link, published }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -66,7 +72,7 @@ export default function ArticleSummaryModal({ title, summary, link, published })
           <Typography
             id='modal-modal-description'
             variant='caption'
-            style={{ color: '#23282f', width: '100%', fontSize: isSmallScreen ? '13px' : isMediumScreen ? '18px' : '22px' }}
+            style={{ color: '#23282f', width: '100%', fontSize: isSmallScreen ? '13px' : isMediumScreen ? '18px' : '22px', ...scrollableStyle }}
           >
             {summary}
           </Typography>
