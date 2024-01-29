@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Input, InputAdornment, IconButton, Fab, styled } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close'
 const StyledSearchContainer = styled('div')({
   position: 'fixed',
   top: '80px',
-  right: '18px',
+  right: '20px',
   zIndex: 1,
   display: 'flex',
   alignItems: 'center'
@@ -32,15 +32,25 @@ const StyledSearchField = styled(Input)({
   padding: '8px',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   '& input': {
-    fontSize: '14px'
+    fontSize: '14px',
   }
 })
 
 const SearchComponent = ({ searchQuery, onSearchChange, onSearchIconClick, onClearSearch, isSearchFieldVisible }) => {
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (isSearchFieldVisible) {
+      // Focus the input field when the search field becomes visible
+      inputRef.current.querySelector('input').focus()
+    }
+  }, [isSearchFieldVisible])
+
   return (
     <StyledSearchContainer>
       {isSearchFieldVisible && (
         <StyledSearchField
+          ref={inputRef}
           placeholder='Search...'
           startAdornment={
             <InputAdornment position='start'>

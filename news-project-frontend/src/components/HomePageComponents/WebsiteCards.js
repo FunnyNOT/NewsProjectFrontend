@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { Button, CardActionArea, Divider, styled, useMediaQuery, useTheme } from '@mui/material'
 import { fetchData } from '../../global_functions/ApiDataDisplay'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import { createPseudoId } from '../../global_functions/CreatePseudoId'
+import { normalizeGreekText } from '../../global_functions/NormalizeGreekText'
 
 export default function WebsiteCards({ searchQuery }) {
   const [data, setData] = useState(null)
@@ -23,17 +25,18 @@ export default function WebsiteCards({ searchQuery }) {
     getData()
   }, [])
 
-  // Filter data based on search query
-  const filteredData = data ? data.filter((item) => item.website_name.toLowerCase().includes(searchQuery.toLowerCase())) : []
+  const normalizedSearchQuery = normalizeGreekText(searchQuery)
+
+  const filteredData = data
+    ? data.filter((item) => normalizeGreekText(item.website_name).toLowerCase().includes(normalizedSearchQuery.toLowerCase()))
+    : []
 
   const MyCard = styled(Card)({
-    // flexDirection: isSmallScreen ? 'column' : 'row',
     flexDirection: 'row',
     display: 'flex',
-    marginBottom: isSmallScreen ? '-15px' : isMediumScreen ? '5px' : '20px', // Adjust the margin between cards
+    marginBottom: isSmallScreen ? '-15px' : isMediumScreen ? '5px' : '20px',
     backgroundColor: '#23282f',
     width: '100%',
-    // height: isSmallScreen ? '350px' : isMediumScreen ? '300px' : '220px',
     height: isSmallScreen ? '105px' : isMediumScreen ? '180px' : '220px',
     justifyContent: 'center',
     alignItems: 'center'
@@ -43,31 +46,11 @@ export default function WebsiteCards({ searchQuery }) {
     display: 'flex',
     width: isSmallScreen ? '100%' : '85%',
     height: isSmallScreen ? '80%' : 'auto',
-    // flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'row' : 'row',
     flexDirection: 'row',
     '&:hover': {
-      backgroundColor: 'rgba(170, 170, 170, 0.15)' // Change to the color you want on hover
+      backgroundColor: 'rgba(170, 170, 170, 0.15)'
     }
   })
-
-  function generateRandomNumber(length) {
-    const min = Math.pow(10, length - 1)
-    const max = Math.pow(10, length) - 1
-
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
-  function createPseudoId(websiteId) {
-    // Convert numbers to strings
-    const firstNumber = generateRandomNumber(3).toString()
-    const secondNumber = generateRandomNumber(3).toString()
-    const websiteIdString = websiteId.toString()
-
-    const combinedString = firstNumber + websiteIdString + secondNumber
-
-    const combinedNumber = parseInt(combinedString, 10)
-
-    return combinedNumber
-  }
 
   const navigate = useNavigate()
 
@@ -77,7 +60,6 @@ export default function WebsiteCards({ searchQuery }) {
     navigate(`/${pseudoId}/${websiteImageName}`)
   }
   const handleButtonClick = (websiteLink) => {
-    // Open the website link in a new tab
     window.open(websiteLink, '_blank')
   }
 

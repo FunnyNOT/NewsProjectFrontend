@@ -4,43 +4,52 @@ import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 import ArticleSummaryModal from './ArticleSummaryModal'
+import { normalizeGreekText } from '../../global_functions/NormalizeGreekText'
 
-const ArticleCards = ({ data }) => {
+const ArticleCards = ({ data, searchQuery }) => {
+  const normalizedSearchQuery = normalizeGreekText(searchQuery)
+
+  const filteredArticles = data.articles.filter(
+    (article) =>
+      normalizeGreekText(article.title).toLowerCase().includes(normalizedSearchQuery.toLowerCase()) ||
+      normalizeGreekText(article.summary).toLowerCase().includes(normalizedSearchQuery.toLowerCase())
+  )
+
   return (
     <Grid container spacing={2}>
-      {data &&
-        data.articles.map((article, index) => (
-          <Grid
-            item
-            key={index}
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{
-              position: 'relative',
-              '&:before': {
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                right: index < data.articles.length - 1 ? '-5px' : '0', // Adjust the distance of the right border
-                borderRight: index < data.articles.length - 1 ? '1px solid rgba(249, 249, 249, 0.8)' : 'none'
-              }
-            }}
-          >
-            <div>
-              <ArticleCard
-                title={article.title}
-                summary={article.summary}
-                link={article.link}
-                published={article.published}
-                image={article.image}
-              />
-            </div>
-          </Grid>
-        ))}
+      {filteredArticles.map((article, index) => (
+        <Grid
+          item
+          key={index}
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
+          sx={{
+            position: 'relative',
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              right: index < filteredArticles.length - 1 ? '-5px' : '0', // Adjust the distance of the right border
+              borderRight: index < filteredArticles.length - 1 ? '1px solid rgba(249, 249, 249, 0.8)' : 'none'
+            }
+          }}
+        >
+          <div>
+            <ArticleCard
+              title={article.title}
+              summary={article.summary}
+              link={article.link}
+              published={article.published}
+              image={article.image}
+              tags={article.tags}
+            />
+          </div>
+        </Grid>
+      ))}
     </Grid>
   )
 }
@@ -131,7 +140,6 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                 {published}
               </Typography>
             </div>
-            {/* {!isSmallScreen && ( */}
             <div>
               <Button
                 variant='outlined'
@@ -158,7 +166,6 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                 Article
               </Button>
             </div>
-            {/* )} */}
           </div>
         </CardContent>
       </MyCard>

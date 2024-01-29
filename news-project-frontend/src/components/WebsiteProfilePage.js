@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import { fetchArticles } from '../global_functions/ApiDataDisplay'
 import { useLocation } from 'react-router-dom'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import SearchComponent from './globalComponents/SearchComponent'
 
 const StyledPage = styled('div')({
   backgroundColor: '#23282f',
@@ -35,7 +36,6 @@ const theme = createTheme({
 function getWebsiteId(pathname) {
   const splitted_pathname = pathname.split('/')[1]
   const websiteId = parseInt(splitted_pathname.slice(3, -3), 10)
-
   return websiteId
 }
 const WebsiteProfilePage = () => {
@@ -44,6 +44,20 @@ const WebsiteProfilePage = () => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(false)
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value)
+  }
+
+  const handleSearchIconClick = () => {
+    setIsSearchFieldVisible(!isSearchFieldVisible)
+  }
+
+  const handleClearSearch = () => {
+    setSearchQuery('')
+  }
 
   useEffect(() => {
     const fetchDataFromAPI2 = async () => {
@@ -102,6 +116,13 @@ const WebsiteProfilePage = () => {
     <ThemeProvider theme={theme}>
       <StyledPage>
         <DrawerAppBar />
+        <SearchComponent
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          onSearchIconClick={handleSearchIconClick}
+          onClearSearch={handleClearSearch}
+          isSearchFieldVisible={isSearchFieldVisible}
+        />
         <Box
           id='back-to-top-anchor'
           component='section'
@@ -119,7 +140,7 @@ const WebsiteProfilePage = () => {
             <Typography style={{ textAlign: 'center', fontSize: '24px' }}>Latest News</Typography>
           </Box>
           <Box sx={{ marginTop: '0px' }}>
-            <ArticleCards data={data} />
+            <ArticleCards data={data} searchQuery={searchQuery} />
           </Box>
         </Box>
         <Box sx={{ height: '100vh', overflowY: 'auto' }}>
