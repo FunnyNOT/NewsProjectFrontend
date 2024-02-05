@@ -109,7 +109,7 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
           <div style={{ flex: 1 }}>
             <Typography
               variant='body1'
-              style={{ color: '#d69818', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '14px' : isLargeScreen ? '15px' : '20px' }}
+              style={{ color: '#eba80a', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '14px' : isLargeScreen ? '15px' : '20px' }}
             >
               {title}
             </Typography>

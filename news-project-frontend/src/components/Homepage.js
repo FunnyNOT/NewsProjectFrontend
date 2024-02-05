@@ -3,9 +3,11 @@ import WebsiteCards from './HomePageComponents/WebsiteCards'
 import { DrawerAppBar } from './globalComponents/Header'
 import Box from '@mui/system/Box'
 import { styled } from '@mui/material'
-import { createTheme, ThemeProvider, Fab } from '@mui/material'
+import { ThemeProvider, Fab } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import SearchComponent from './globalComponents/SearchComponent'
+import { theme } from '../global_functions/GlobalTheme'
+import { ScrollTop } from '../global_functions/ScrollTop'
 import '@fontsource/league-spartan'
 
 const StyledHomePage = styled('div')({
@@ -18,38 +20,6 @@ const StyledHomePage = styled('div')({
   overflowX: 'hidden',
   position: 'relative'
 })
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#23282f'
-    }
-  },
-  typography: {
-    fontFamily: 'League Spartan, sans-serif'
-  }
-})
-
-const ScrollTop = (props) => {
-  const { children } = props
-
-  const handleClick = () => {
-    const anchor = document.querySelector('#back-to-top-anchor')
-
-    if (anchor) {
-      anchor.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
-  }
-
-  return (
-    <div onClick={handleClick} role='presentation' style={{ position: 'fixed', bottom: 16, right: 16, cursor: 'pointer' }}>
-      {children}
-    </div>
-  )
-}
 
 const Homepage = () => {
   const [searchQuery, setSearchQuery] = useState('')

@@ -71,14 +71,14 @@ const AboutUs = () => {
           <AboutUsCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '4%', borderBottom: '5px solid #d69818', marginBottom: '6px' }} />
+          <Divider sx={{ width: '4%', borderBottom: '5px solid #eba80a', marginBottom: '6px' }} />
           <Typography variant='h4' align='left' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
             Our Mission
           </Typography>
           <OurMissionCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '3%', borderBottom: '5px solid #d69818', marginBottom: '6px', marginLeft: 'auto' }} />
+          <Divider sx={{ width: '3%', borderBottom: '5px solid #eba80a', marginBottom: '6px', marginLeft: 'auto' }} />
           <Typography variant='h4' align='right' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
             How It Works
           </Typography>
@@ -97,7 +97,7 @@ const AboutUs = () => {
           <WhyChooseCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '3%', borderBottom: '5px solid #d69818', marginBottom: '6px', margin: 'auto', textAlign: 'center' }} />
+          <Divider sx={{ width: '3%', borderBottom: '5px solid #eba80a', marginBottom: '6px', margin: 'auto', textAlign: 'center' }} />
           <Typography variant='h4' align='center' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
             Our Team
           </Typography>

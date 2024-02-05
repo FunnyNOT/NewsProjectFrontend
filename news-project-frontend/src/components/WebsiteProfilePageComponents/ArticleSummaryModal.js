@@ -48,8 +48,8 @@ export default function ArticleSummaryModal({ title, summary, link, published })
       <Button
         onClick={handleOpen}
         style={{
-          color: '#d69818',
-          borderColor: '#d69818',
+          color: '#eba80a',
+          borderColor: '#eba80a',
           fontSize: isSmallScreen ? '8px' : isMediumScreen ? '8px' : isLargeScreen ? '8px' : '11px'
         }}
         variant='outlined'
@@ -64,7 +64,7 @@ export default function ArticleSummaryModal({ title, summary, link, published })
           <Typography
             id='modal-modal-title'
             variant='body1'
-            style={{ color: '#d69818', fontSize: isSmallScreen ? '15px' : isMediumScreen ? '18px' : isLargeScreen ? '22px' : '28px' }}
+            style={{ color: '#eba80a', fontSize: isSmallScreen ? '15px' : isMediumScreen ? '18px' : isLargeScreen ? '22px' : '28px' }}
           >
             {title}
           </Typography>

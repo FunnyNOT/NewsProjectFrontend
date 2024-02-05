@@ -1,54 +1,34 @@
-import React, { useRef, useEffect } from 'react'
-import { Input, InputAdornment, IconButton, Fab, styled } from '@mui/material'
+import React, { useRef } from 'react'
+import { Input, InputAdornment, IconButton, styled, Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 
 const StyledSearchContainer = styled('div')({
-  position: 'fixed',
-  top: '80px',
-  right: '20px',
   zIndex: 1,
   display: 'flex',
-  alignItems: 'center'
-})
-
-const StyledSearchButton = styled(Fab)({
-  cursor: 'pointer',
-  backgroundColor: 'rgba(170, 170, 170, 0.5)',
-  color: '#23282f',
-  fontSize: '15px',
-  borderColor: '#23282f',
-  marginLeft: '10px',
-  padding: '10px',
-  '&:hover': {
-    backgroundColor: 'rgba(170, 170, 170, 0.25)'
-  }
+  alignItems: 'center',
+  justifyContent: 'center'
 })
 
 const StyledSearchField = styled(Input)({
-  marginRight: '8px',
+  width: '300px',
+  height: '54px',
+  marginBottom: '0px',
   backgroundColor: '#fff',
   borderRadius: '4px',
   padding: '8px',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   '& input': {
-    fontSize: '14px',
+    fontSize: '16px'
   }
 })
 
-const SearchComponent = ({ searchQuery, onSearchChange, onSearchIconClick, onClearSearch, isSearchFieldVisible }) => {
+const SearchComponent = ({ searchQuery, onSearchChange, onClearSearch }) => {
   const inputRef = useRef(null)
 
-  useEffect(() => {
-    if (isSearchFieldVisible) {
-      // Focus the input field when the search field becomes visible
-      inputRef.current.querySelector('input').focus()
-    }
-  }, [isSearchFieldVisible])
-
   return (
-    <StyledSearchContainer>
-      {isSearchFieldVisible && (
+    <Box sx={{ alignItems: 'center' }}>
+      <StyledSearchContainer>
         <StyledSearchField
           ref={inputRef}
           placeholder='Search...'
@@ -66,11 +46,8 @@ const SearchComponent = ({ searchQuery, onSearchChange, onSearchIconClick, onCle
           value={searchQuery}
           onChange={onSearchChange}
         />
-      )}
-      <StyledSearchButton size='medium' aria-label='search' onClick={onSearchIconClick}>
-        <SearchIcon />
-      </StyledSearchButton>
-    </StyledSearchContainer>
+      </StyledSearchContainer>
+    </Box>
   )
 }
 
