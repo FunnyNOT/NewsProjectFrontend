@@ -16,6 +16,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Slide from '@mui/material/Slide'
 import { Link } from 'react-router-dom'
 import { useMediaQuery, useTheme } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 
 function HideOnScroll(props) {
   const { children, window } = props
@@ -40,7 +41,7 @@ const drawerWidth = 240
 //   { label: 'About Us', path: '/about' },
 // ];
 
-function DrawerAppBar(props) {
+function DrawerAppBar({ onSearchButtonClick, ...props }) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const theme = useTheme()
@@ -55,7 +56,6 @@ function DrawerAppBar(props) {
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt='Logo' height='67px' />
       </Box>
-
       <Divider style={{ color: '#f9f9f9', borderColor: '#f9f9f9' }} />
       <List>
         <ListItem disablePadding>
@@ -104,6 +104,17 @@ function DrawerAppBar(props) {
                     style={{ transform: 'translateX(-50%)', userSelect: 'none', marginTop: '8px' }}
                   />
                 </Link>
+              </Box>
+              <Box>
+                <IconButton
+                  color='inherit'
+                  aria-label='open drawer'
+                  edge='start'
+                  onClick={onSearchButtonClick}
+                  sx={{ mr: 2, width: isSmallScreen ? '10%' : 'auto' }}
+                >
+                  <SearchIcon />
+                </IconButton>
               </Box>
               <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <Link to='/' style={{ textDecoration: 'none' }}>

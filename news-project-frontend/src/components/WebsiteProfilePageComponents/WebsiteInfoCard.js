@@ -50,7 +50,7 @@ const WebsiteInfoCard = ({ websiteName, websiteDescription, imageUrl, websiteLin
           gutterBottom
           variant='h5'
           component='div'
-          style={{ color: '#d69818', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px', textAlign: 'center' }}
+          style={{ color: '#eba80a', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px', textAlign: 'center' }}
         >
           {websiteName}
         </Typography>

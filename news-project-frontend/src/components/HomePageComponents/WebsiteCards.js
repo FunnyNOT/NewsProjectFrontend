@@ -86,7 +86,7 @@ export default function WebsiteCards({ searchQuery }) {
                   gutterBottom
                   variant='h5'
                   component='div'
-                  style={{ color: '#d69818', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '16px' : '25px' }}
+                  style={{ color: '#eba80a', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '16px' : '25px' }}
                 >
                   {item.website_name}
                 </Typography>
