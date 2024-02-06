@@ -115,7 +115,7 @@ const WebsiteProfilePage = () => {
   return (
     <ThemeProvider theme={theme}>
       <StyledPage>
-        <DrawerAppBar onSearchButtonClick={handleSearchButtonClick} />
+        <DrawerAppBar onSearchButtonClick={handleSearchButtonClick} visible={searchAndFilterVisible} />
         <Box
           id='back-to-top-anchor'
           component='section'

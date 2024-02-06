@@ -41,7 +41,7 @@ const drawerWidth = 240
 //   { label: 'About Us', path: '/about' },
 // ];
 
-function DrawerAppBar({ onSearchButtonClick, ...props }) {
+function DrawerAppBar({ onSearchButtonClick, visible, ...props }) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const theme = useTheme()
@@ -111,7 +111,16 @@ function DrawerAppBar({ onSearchButtonClick, ...props }) {
                   aria-label='open drawer'
                   edge='start'
                   onClick={onSearchButtonClick}
-                  sx={{ mr: 2, width: isSmallScreen ? '10%' : 'auto' }}
+                  sx={{
+                    mr: 1,
+                    width: isSmallScreen ? 'auto' : 'auto',
+                    borderRadius: visible ? '80%' : '50%',
+                    backgroundColor: visible ? 'rgba(255, 255, 255, 0.4)' : 'transparent',
+                    boxShadow: visible ? '0 0 10px rgba(0, 0, 0, 0.5)' : 'none',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)'
+                    }
+                  }}
                 >
                   <SearchIcon />
                 </IconButton>

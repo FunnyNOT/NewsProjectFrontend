@@ -30,7 +30,7 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
 
   return (
     <Box
-      backgroundColor='#eba80a'
+      backgroundColor='#23282f'
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -40,11 +40,13 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
     >
       <div
         style={{
-          height: '55px',
+          height: '56px',
           width: isSmallScreen ? '250px' : '300px',
           marginBottom: isSmallScreen ? '5px' : '0px',
           backgroundColor: '#fff',
-          borderRadius: '5px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
+          // border:'4px solid #eba80a',
           marginTop: isSmallScreen ? '8px' : isMediumScreen ? '8px' : '0px'
         }}
       >
@@ -74,7 +76,13 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
       {/* Display deletable chips for selected tags */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', marginLeft: '8px', marginTop: '8px' }}>
         {selectedTags.map((tag) => (
-          <Chip key={tag} label={tag} onDelete={() => handleDeleteChip(tag)} style={{ margin: '3px', backgroundColor: '#fff' }} />
+          <Chip
+            key={tag}
+            label={tag}
+            onDelete={() => handleDeleteChip(tag)}
+            variant='outlined'
+            style={{ margin: '3px', backgroundColor: '#fff', fontSize: '14px' }}
+          />
         ))}
       </Box>
     </Box>
@@ -82,80 +90,3 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
 }
 
 export default FilterComponent
-
-// import React from 'react';
-// import { FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, Box, Chip } from '@mui/material';
-
-// const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
-//   const handleDeleteChip = (tagToDelete) => {
-//     const updatedTags = selectedTags.filter((tag) => tag !== tagToDelete);
-//     onTagChange(updatedTags);
-//   };
-
-//   return (
-//     <Box backgroundColor='#fff' sx={{ width: '25%', zIndex: 1000 }}>
-//       <FormControl fullWidth>
-//         <InputLabel id="tags-label">Select Tags</InputLabel>
-//         <Select
-//           labelId="tags-label"
-//           id="tags"
-//           multiple
-//           value={selectedTags}
-//           onChange={onTagChange}
-//           renderValue={(selected) => selected.join(', ')}
-//         >
-//           {allTags.map((tag) => (
-//             <MenuItem key={tag} value={tag}>
-//               <Checkbox checked={selectedTags.includes(tag)} />
-//               <ListItemText primary={tag} />
-//             </MenuItem>
-//           ))}
-//         </Select>
-//       </FormControl>
-
-//       {/* Display deletable chips for selected tags */}
-//       <Box sx={{ display: 'flex', flexWrap: 'wrap', marginTop: '8px' }}>
-//         {selectedTags.map((tag) => (
-//           <Chip
-//             key={tag}
-//             label={tag}
-//             onDelete={() => handleDeleteChip(tag)}
-//             style={{ margin: '4px' }}
-//           />
-//         ))}
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default FilterComponent;
-
-// import React from 'react';
-// import { FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText, Box } from '@mui/material';
-
-// const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
-//   return (
-//     <Box backgroundColor='#fff' sx={{width:'25%', zIndex: 1000}}>
-//       <FormControl fullWidth>
-//         <InputLabel id="tags-label">Select Tags</InputLabel>
-//         <Select
-//           labelId="tags-label"
-//           id="tags"
-//           multiple
-//           value={selectedTags}
-//           onChange={onTagChange}
-//           renderValue={(selected) => selected.join(', ')}
-//         >
-//           {allTags.map((tag) => (
-//             <MenuItem key={tag} value={tag}>
-//               <Checkbox checked={selectedTags.includes(tag)} />
-//               <ListItemText primary={tag} />
-//             </MenuItem>
-//           ))}
-//         </Select>
-//       </FormControl>
-//     </Box>
-//   );
-// };
-
-// export default FilterComponent;
