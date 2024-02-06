@@ -12,14 +12,16 @@ const StyledSearchContainer = styled('div')({
 
 const StyledSearchField = styled(Input)({
   width: '300px',
-  height: '54px',
+  height: '57px',
   marginBottom: '0px',
   backgroundColor: '#fff',
-  borderRadius: '4px',
+  borderRadius: '7px',
+  // border:'4px solid #eba80a',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
   padding: '8px',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   '& input': {
-    fontSize: '16px'
+    fontSize: '18px'
   }
 })
 

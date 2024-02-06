@@ -67,12 +67,13 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
     display: 'flex',
     marginLeft: isSmallScreen ? '2%' : isMediumScreen ? '5%' : '5%',
     marginRight: isSmallScreen ? '0%' : isMediumScreen ? '5%' : '5%',
-    backgroundColor: isImageAvailable ? '#23282f' : '#EAF4FC',
+    backgroundColor: isImageAvailable ? '#23282f' : '#23282f',
     width: isSmallScreen ? '95%' : isMediumScreen ? '90%' : '90%',
     height: isSmallScreen ? '200px' : isMediumScreen ? '220px' : '220px',
     justifyContent: 'center',
     alignItems: 'center',
-    variant: isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain'
+    variant: isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)'
   })
 
   const handleButtonClick = (websiteLink) => {
@@ -132,7 +133,7 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
               <Typography
                 variant='caption'
                 style={{
-                  color: isImageAvailable ? '#EAF4FC' : '#23282f',
+                  color: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
                   fontStyle: 'italic',
                   fontSize: isSmallScreen ? '8px' : isMediumScreen ? '10px' : '13px'
                 }}
@@ -149,9 +150,9 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                   }
                 }}
                 style={{
-                  color: isImageAvailable ? '#EAF4FC' : '#23282f',
+                  color: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
                   fontSize: isSmallScreen ? '5px' : '10px',
-                  borderColor: isImageAvailable ? '#EAF4FC' : '#23282f',
+                  borderColor: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
                   marginLeft: '10px',
                   marginTop: isSmallScreen ? '5px' : isMediumScreen ? '15px' : '25px',
                   padding: isSmallScreen ? '0' : 'auto',
