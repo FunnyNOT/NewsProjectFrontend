@@ -21,7 +21,7 @@ const SquareCard = ({ title, text }) => {
       }}
     >
       <CardContent style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Divider sx={{ width: '4%', borderBottom: '2px solid #da292f', marginBottom: '6px', position: 'left' }} />
+        <Divider sx={{ width: '4%', borderBottom: '2px solid #eba80a', marginBottom: '6px', position: 'left' }} />
         <Box style={{ height: '30%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Typography variant='h6' align='center' style={{ marginBottom: '15px', color: '#23282f', fontSize: '25px' }}>
             {title}

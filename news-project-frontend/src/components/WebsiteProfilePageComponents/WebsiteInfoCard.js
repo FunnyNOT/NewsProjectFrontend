@@ -40,6 +40,7 @@ const WebsiteInfoCard = ({ websiteName, websiteDescription, imageUrl, websiteLin
           objectFit: 'contain',
           borderRadius: '25px',
           marginLeft: isSmallScreen ? '0%' : isMediumScreen ? '0%' : '5%',
+          marginRight: isSmallScreen ? '0%' : isMediumScreen ? '0%' : '0%',
           height: isSmallScreen ? '25%' : isMediumScreen ? '25%' : '55%'
         }}
       />
@@ -49,7 +50,7 @@ const WebsiteInfoCard = ({ websiteName, websiteDescription, imageUrl, websiteLin
           gutterBottom
           variant='h5'
           component='div'
-          style={{ color: '#da292f', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px', textAlign: 'center' }}
+          style={{ color: '#eba80a', fontSize: isSmallScreen ? '14px' : isMediumScreen ? '18px' : '25px', textAlign: 'center' }}
         >
           {websiteName}
         </Typography>

@@ -3,24 +3,53 @@ import { Typography, Grid, Card, CardMedia, CardContent, styled, Button, Divider
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import ArticleSummaryModal from './ArticleSummaryModal'
+import { normalizeGreekText } from '../../global_functions/NormalizeGreekText'
 
-const ArticleCards = ({ data }) => {
+const ArticleCards = ({ data, searchQuery }) => {
+  const normalizedSearchQuery = normalizeGreekText(searchQuery)
+
+  const filteredArticles = data.articles.filter(
+    (article) =>
+      normalizeGreekText(article.title).toLowerCase().includes(normalizedSearchQuery.toLowerCase()) ||
+      normalizeGreekText(article.summary).toLowerCase().includes(normalizedSearchQuery.toLowerCase())
+  )
+
   return (
     <Grid container spacing={2}>
-      {data &&
-        data.articles.map((article, index) => (
-          <Grid item key={index} xs={12} sm={12} md={12} lg={12}>
-            <div>
-              <ArticleCard
-                title={article.title}
-                summary={article.summary}
-                link={article.link}
-                published={article.published}
-                image={article.image}
-              />
-            </div>
-          </Grid>
-        ))}
+      {filteredArticles.map((article, index) => (
+        <Grid
+          item
+          key={index}
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
+          sx={{
+            position: 'relative',
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              right: index < filteredArticles.length - 1 ? '-5px' : '0', // Adjust the distance of the right border
+              borderRight: index < filteredArticles.length - 1 ? '1px solid rgba(249, 249, 249, 0.8)' : 'none'
+            }
+          }}
+        >
+          <div>
+            <ArticleCard
+              title={article.title}
+              summary={article.summary}
+              link={article.link}
+              published={article.published}
+              image={article.image}
+              tags={article.tags}
+            />
+          </div>
+        </Grid>
+      ))}
     </Grid>
   )
 }
@@ -31,19 +60,20 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
   const theme = useTheme()
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const isLargeScreen = useMediaQuery(theme.breakpoints.down('lg'))
 
   const MyCard = styled(Card)({
-    // flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'column' : 'row',
     flexDirection: 'row',
     display: 'flex',
-    marginLeft: isSmallScreen ? '2%' : isMediumScreen ? '5%' : '10%',
-    marginRight: isSmallScreen ? '0%' : isMediumScreen ? '5%' : '10%',
-    backgroundColor: isImageAvailable ? '#23282f': '#EAF4FC',
-    width: isSmallScreen ? '95%' : isMediumScreen ? '90%' : '80%',
-    height: '100%',
+    marginLeft: isSmallScreen ? '2%' : isMediumScreen ? '5%' : '5%',
+    marginRight: isSmallScreen ? '0%' : isMediumScreen ? '5%' : '5%',
+    backgroundColor: isImageAvailable ? '#23282f' : '#23282f',
+    width: isSmallScreen ? '95%' : isMediumScreen ? '90%' : '90%',
+    height: isSmallScreen ? '200px' : isMediumScreen ? '220px' : '220px',
     justifyContent: 'center',
     alignItems: 'center',
-    variant: isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain'
+    variant: isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)'
   })
 
   const handleButtonClick = (websiteLink) => {
@@ -53,59 +83,64 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
   return (
     <>
       <MyCard
-        variant={isSmallScreen ? 'outlined' : isMediumScreen ? 'outlined' : 'plain'}
-        style={{ borderColor: '#f9f9f9', borderRadius: '10px', marginBottom: isSmallScreen ? '0px' : isMediumScreen ? '0px' : '10px'}}
+        variant='plain'
+        style={{ borderColor: '#f9f9f9', borderRadius: '10px', marginBottom: isSmallScreen ? '0px' : isMediumScreen ? '0px' : '10px' }}
       >
-        {
-          isImageAvailable && (
-            <CardMedia
-              component='img'
-              alt={title}
-              image={image}
-              sx={{ height: 'auto' }}
-              title='oops'
-              style={{
-                width: '30%',
-                objectFit: 'cover',
-                height: isSmallScreen ? '100%' : isMediumScreen ? '50%' : '25%',
-                marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '50px'
-              }}
-              onError={(e) => {
-                e.target.src = defaultImageUrl;
-              }}
-            />
-          )          
-        }
+        {isImageAvailable && (
+          <CardMedia
+            component='img'
+            alt={title}
+            image={image}
+            sx={{ height: 'auto' }}
+            style={{
+              width: '35%',
+              maxWidth: '250px',
+              minWidth: isSmallScreen ? '35%' : isMediumScreen ? '35%' : isLargeScreen ? '35%' : '30%',
+              objectFit: 'cover',
+              height: isSmallScreen ? '55%' : isMediumScreen ? '75%' : isLargeScreen ? '70%' : '80%',
+              marginLeft: isSmallScreen ? '10px' : isMediumScreen ? '20px' : '40px',
+              borderRadius: '20px'
+            }}
+            onError={(e) => {
+              e.target.src = defaultImageUrl
+            }}
+          />
+        )}
         <CardContent style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <div style={{ flex: 1 }}>
-            <Typography variant='body1' style={{ color: '#da292f', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '16px' : '25px' }}>
+            <Typography
+              variant='body1'
+              style={{ color: '#eba80a', fontSize: isSmallScreen ? '11px' : isMediumScreen ? '14px' : isLargeScreen ? '15px' : '20px' }}
+            >
               {title}
             </Typography>
-            {!isImageAvailable &&(
-              <Divider style={{ width: '100%', borderBottom: '1px solid #23282f', marginTop:'10px' }} />
+            {!isImageAvailable && (
+              <Divider
+                style={{
+                  width: '100%',
+                  borderBottom: '1px solid #23282f',
+                  marginTop: '20px',
+                  marginBottom: isSmallScreen ? '12px' : '0px'
+                }}
+              />
             )}
-            <Box style={{ marginTop:isImageAvailable ? 'auto': '15px'}}>
-            <Typography
-              variant='caption'
-              style={{ color: isImageAvailable ? '#EAF4FC': '#23282f', width: '100%', fontSize: isSmallScreen ? '9px' : isMediumScreen ? '12px' : '18px' }}
-            >
-              {summary}
-            </Typography>
-            {!isImageAvailable &&(
-              <Divider style={{ width: '100%', borderBottom: '1px solid #23282f', marginTop:'20px' }} />
-            )}
-            </Box>
           </div>
+          <Box style={{ marginTop: '10px' }}>
+            <ArticleSummaryModal title={title} summary={summary} link={link} published={published} />
+          </Box>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <div>
               <Typography
                 variant='caption'
-                style={{ color: isImageAvailable ? '#EAF4FC': '#23282f', fontStyle: 'italic', fontSize: isSmallScreen ? '9px' : isMediumScreen ? '12px' : '18px' }}
+                style={{
+                  color: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
+                  fontStyle: 'italic',
+                  fontSize: isSmallScreen ? '8px' : isMediumScreen ? '10px' : '13px'
+                }}
               >
                 {published}
               </Typography>
             </div>
-            {/* {!isSmallScreen && ( */}
             <div>
               <Button
                 variant='outlined'
@@ -115,14 +150,14 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                   }
                 }}
                 style={{
-                  color: isImageAvailable ? '#EAF4FC': '#23282f',
-                  fontSize: isSmallScreen ? '6px' : '12px',
-                  borderColor: isImageAvailable ? '#EAF4FC': '#23282f',
-                  marginLeft: 'auto',
-                  marginTop: isSmallScreen ? '10px' : isMediumScreen ? '25px' : '35px',
+                  color: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
+                  fontSize: isSmallScreen ? '5px' : '10px',
+                  borderColor: isImageAvailable ? '#EAF4FC' : '#EAF4FC',
+                  marginLeft: '10px',
+                  marginTop: isSmallScreen ? '5px' : isMediumScreen ? '15px' : '25px',
                   padding: isSmallScreen ? '0' : 'auto',
-                  paddingTop: isSmallScreen ? '5px' : 'auto',
-                  paddingBottom: isSmallScreen ? '5px' : 'auto'
+                  paddingTop: isSmallScreen ? '3px' : 'auto',
+                  paddingBottom: isSmallScreen ? '3px' : 'auto'
                 }}
                 endIcon={<ArrowOutwardIcon />}
                 onClick={() => handleButtonClick(link)}
@@ -132,7 +167,6 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
                 Article
               </Button>
             </div>
-            {/* )} */}
           </div>
         </CardContent>
       </MyCard>
@@ -140,8 +174,8 @@ const ArticleCard = ({ title, summary, link, published, image }) => {
         sx={{
           color: '#f9f9f9',
           borderColor: '#f9f9f9',
-          marginLeft: '5%',
-          marginRight: '5%'
+          marginLeft: '-10%',
+          marginRight: '0'
         }}
       />
     </>
