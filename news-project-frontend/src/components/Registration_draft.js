@@ -1,21 +1,17 @@
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google'
-import React, { useEffect } from 'react'
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+import React from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-
-const setCookie = (name, value, days) => {
-  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString()
-  document.cookie = `${name}=${value}; path=/; expires=${expires}; Secure; SameSite=Strict`
-}
+import { setCookie } from '../global_functions/cookies'
 
 function SignInButton() {
   const { login } = useAuth()
 
   return (
     <GoogleLogin
+      type='standard'
+      theme='filled_black'
+      size='medium'
       onSuccess={(credentialResponse) => {
         // make a post request to the backend to create or login the user
         const login_url = process.env.REACT_APP_FLASK_PUBLIC_IP + '/accounts/login'

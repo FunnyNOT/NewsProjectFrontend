@@ -1,30 +1,28 @@
-import { getSessionToken } from './GetSessionToken';
+import { getSessionToken } from './GetSessionToken'
 
 // This is now a custom hook, so it starts with "use"
 export const useAuthenticateUser = () => {
-  
   const authenticateUser = async () => {
-    
-    const sessionToken = getSessionToken();
+    const sessionToken = getSessionToken()
 
     if (!sessionToken) {
       // Session token not found, prompt the user to login
       // You might redirect or show a login modal here
-      return false;
+      return false
     }
-    
+
     // Session token exists, validate it with the backend
-    const response = await checkSessionToken(sessionToken);
+    const response = await checkSessionToken(sessionToken)
     if (!response.ok) {
       // Session token is invalid, prompt the user to login
       // You might redirect or show a login modal here
-      return false;
+      return false
     }
-    return response.json();
-  };
+    return response.json()
+  }
 
-  return { authenticateUser };
-};
+  return { authenticateUser }
+}
 
 const checkSessionToken = async (sessionToken) => {
   // Implement logic to validate the session token with your backend
@@ -36,10 +34,9 @@ const checkSessionToken = async (sessionToken) => {
     headers: {
       'Content-Type': 'application/json',
       'api-key': process.env.REACT_APP_API_KEY,
-      'session-token': sessionToken 
+      'session-token': sessionToken
     }
-  });
-  
-  return response;
-};
+  })
 
+  return response
+}

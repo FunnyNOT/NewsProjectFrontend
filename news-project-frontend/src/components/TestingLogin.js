@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 const YourComponent = () => {
   // Use the useAuthenticateUser hook
-  const { user } = useAuth();
-  const navigate = useNavigate();
-  
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (user === false) {
-      navigate('/login');
-    } 
-  }, [user, navigate]);
-  
+      navigate('/login')
+    }
+  }, [user, navigate])
+
   if (!user) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>
   }
 
   return (
@@ -26,7 +26,7 @@ const YourComponent = () => {
           <p>Last name: {user.lastname}</p>
           <p>User ID: {user.id}</p>
 
-          <button >Logout </button>
+          <button onClick={logout}>Logout </button>
         </div>
       ) : (
         <div>
@@ -35,7 +35,7 @@ const YourComponent = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default YourComponent;
+export default YourComponent
