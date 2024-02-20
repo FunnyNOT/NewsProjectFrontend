@@ -12,7 +12,7 @@ const StyledSearchContainer = styled('div')({
 
 const StyledSearchField = styled(Input)({
   width: '300px',
-  height: '57px',
+  height: '56px',
   marginBottom: '0px',
   backgroundColor: '#fff',
   borderRadius: '7px',

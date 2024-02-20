@@ -11,7 +11,7 @@ const SquareCard = ({ title, text }) => {
     <Card
       style={{
         width: '100%',
-        height: isSmallScreen ? '400px' : isMediumScreen ? '350px' : '300px',
+        height: isSmallScreen ? '200px' : isMediumScreen ? '250px' : '300px',
         borderRadius: '16px',
         boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
         display: 'flex',
@@ -23,12 +23,24 @@ const SquareCard = ({ title, text }) => {
       <CardContent style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Divider sx={{ width: '4%', borderBottom: '2px solid #eba80a', marginBottom: '6px', position: 'left' }} />
         <Box style={{ height: '30%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Typography variant='h6' align='center' style={{ marginBottom: '15px', color: '#23282f', fontSize: '25px' }}>
+          <Typography
+            variant='h6'
+            align='center'
+            style={{
+              marginBottom: isSmallScreen ? '5px' : isMediumScreen ? '10px' : '15px',
+              color: '#23282f',
+              fontSize: isSmallScreen ? '15px' : isMediumScreen ? '20px' : '25px'
+            }}
+          >
             {title}
           </Typography>
         </Box>
         <Divider style={{ width: '100%', borderBottom: '2px solid #23282f' }} />
-        <Typography variant='body2' align='center' style={{ color: '#23282f', margin: '35px', fontSize: '20px' }}>
+        <Typography
+          variant='body2'
+          align='center'
+          style={{ color: '#23282f', margin: '25px', fontSize: isSmallScreen ? '12px' : isMediumScreen ? '15px' : '20px' }}
+        >
           {' '}
           {text}{' '}
         </Typography>
@@ -49,7 +61,7 @@ const WhyChooseCard = () => {
           width: '100%',
           display: 'flex',
           flexDirection: isSmallScreen ? 'column' : isMediumScreen ? 'column' : 'row',
-          gap: isSmallScreen ? '16px' : '32px',
+          gap: isSmallScreen ? '13px' : '32px',
           margin: '0px'
         }}
       >
