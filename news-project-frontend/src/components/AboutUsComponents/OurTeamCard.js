@@ -1,7 +1,10 @@
 import React from 'react'
-import { Card, CardContent, Grid, Typography } from '@mui/material'
+import { Card, CardContent, Grid, Typography, useTheme, useMediaQuery } from '@mui/material'
 
 const OurTeamCard = () => {
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
     <Card>
       <Grid container>
@@ -17,7 +20,7 @@ const OurTeamCard = () => {
         {/* Centered Text (Middle on Small and Medium Screens) */}
         <Grid item xs={12} md={4} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <CardContent>
-            <Typography variant='h6' align='center' style={{ color: '#23282f' }}>
+            <Typography align='center' style={{ color: '#23282f', fontSize: isSmallScreen ? '15px' : '25px' }}>
               Behind the scenes is a dynamic team of individuals passionate about the transformative potential of information. From editors
               ensuring accuracy to developers shaping the technological backbone, our collective goal is to redefine how you engage with the
               news.

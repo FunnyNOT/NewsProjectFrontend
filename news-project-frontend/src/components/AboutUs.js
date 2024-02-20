@@ -2,7 +2,7 @@ import React from 'react'
 import { DrawerAppBar } from './globalComponents/Header'
 import Box from '@mui/system/Box'
 import { styled } from '@mui/material'
-import { createTheme, ThemeProvider, Fab, Typography, Divider } from '@mui/material'
+import { createTheme, ThemeProvider, Fab, Typography, Divider, useMediaQuery } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import '@fontsource/league-spartan'
 import AboutUsCard from './AboutUsComponents/AboutUsCard'
@@ -63,33 +63,44 @@ const ScrollTop = (props) => {
 }
 
 const AboutUs = () => {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <ThemeProvider theme={theme}>
       <StyledPage id='back-to-top-anchor'>
         <DrawerAppBar />
-        <Box component='section' sx={{ marginTop: '55px' }}>
+        <Box component='section' sx={{ marginTop: isSmallScreen ? '5px' : '45px' }}>
           <AboutUsCard />
         </Box>
-        <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '4%', borderBottom: '5px solid #eba80a', marginBottom: '6px' }} />
-          <Typography variant='h4' align='left' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
-            Our Mission
-          </Typography>
+        <Box component='section' sx={{ p: 6, marginTop: '-40px' }}>
           <OurMissionCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '3%', borderBottom: '5px solid #eba80a', marginBottom: '6px', marginLeft: 'auto' }} />
-          <Typography variant='h4' align='right' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
-            How It Works
-          </Typography>
+          {!isSmallScreen && (
+            <Box style={{ width: isSmallScreen ? '90%' : '100%', height: 'auto', marginLeft: '20px' }}>
+              <Divider sx={{ width: '2%', borderBottom: '5px solid #eba80a', marginBottom: '6px', marginLeft: 'auto' }} />
+              <Typography
+                variant='h4'
+                align='right'
+                sx={{ marginBottom: '20px', fontWeight: 'bold', fontSize: isMediumScreen ? '38px' : '45px', marginRight: '5px' }}
+              >
+                How It Works
+              </Typography>
+            </Box>
+          )}
           <HowItWorksCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Typography variant='h4' align='center' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
+          <Typography
+            variant='h4'
+            align='center'
+            sx={{ marginBottom: '20px', fontWeight: 'bold', fontSize: isSmallScreen ? '30px' : '45px' }}
+          >
             Why Choose{' '}
             <img
               src={`${process.env.PUBLIC_URL}/images/logo.png`}
-              alt='Newsify'
+              alt='NewsPort'
               style={{ width: '170px', height: 'auto', marginBottom: '5px', verticalAlign: 'middle' }}
             />
             ?
@@ -97,8 +108,20 @@ const AboutUs = () => {
           <WhyChooseCard />
         </Box>
         <Box component='section' sx={{ p: 7, marginTop: '-20px' }}>
-          <Divider sx={{ width: '3%', borderBottom: '5px solid #eba80a', marginBottom: '6px', margin: 'auto', textAlign: 'center' }} />
-          <Typography variant='h4' align='center' fontSize={'45px'} sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
+          <Divider
+            sx={{
+              width: isSmallScreen ? '8%' : '3%',
+              borderBottom: '5px solid #eba80a',
+              marginBottom: '6px',
+              margin: 'auto',
+              textAlign: 'center'
+            }}
+          />
+          <Typography
+            variant='h4'
+            align='center'
+            sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center', fontSize: isSmallScreen ? '30px' : '45px' }}
+          >
             Our Team
           </Typography>
           <OurTeamCard />

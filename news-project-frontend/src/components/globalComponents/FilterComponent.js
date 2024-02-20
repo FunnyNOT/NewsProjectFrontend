@@ -32,6 +32,7 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
     <Box
       backgroundColor='#23282f'
       sx={{
+        height: 'auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -47,7 +48,7 @@ const FilterComponent = ({ allTags, selectedTags, onTagChange }) => {
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.8)',
           // border:'4px solid #eba80a',
-          marginTop: isSmallScreen ? '8px' : isMediumScreen ? '8px' : '0px'
+          marginTop: isSmallScreen ? '8px' : isMediumScreen ? '8px' : '3px'
         }}
       >
         <FormControl fullWidth>
