@@ -18,6 +18,11 @@ import { Link } from 'react-router-dom'
 import { useMediaQuery, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 
+import { useNavigate } from 'react-router-dom'
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
+import { setCookie } from '../../global_functions/cookies'
+import { useAuth } from '../../contexts/AuthContext'
+
 function HideOnScroll(props) {
   const { children, window } = props
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -46,6 +51,7 @@ function DrawerAppBar({ onSearchButtonClick, visible, ...props }) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const theme = useTheme()
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const { login } = useAuth()
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState)
@@ -76,6 +82,8 @@ function DrawerAppBar({ onSearchButtonClick, visible, ...props }) {
     </Box>
   )
 
+  const navigate = useNavigate()
+
   const container = window !== undefined ? () => window().document.body : undefined
 
   return (
@@ -94,6 +102,42 @@ function DrawerAppBar({ onSearchButtonClick, visible, ...props }) {
               >
                 <MenuIcon />
               </IconButton>
+              {/* heeeeeeeeeeeeeeeeeeeeeeeeeeeere */}
+              <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+                <GoogleLogin
+                  type='standard'
+                  theme='filled_black'
+                  size='medium'
+                  onSuccess={(credentialResponse) => {
+                    // make a post request to the backend to create or login the user
+                    const login_url = process.env.REACT_APP_FLASK_PUBLIC_IP + '/accounts/login'
+                    fetch(login_url, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': process.env.REACT_APP_API_KEY
+                      },
+                      body: JSON.stringify(credentialResponse)
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        setCookie('sessionToken', data.session_token, 7)
+                        console.log('Success:', data)
+                        login(data.user)
+
+                        navigate('/login_testing')
+                      })
+                      .catch((error) => {
+                        console.error('Error:', error)
+                      })
+
+                  }}
+                  onError={() => {
+                    console.log('Login Failed')
+                  }}
+                />
+              </GoogleOAuthProvider>
+              {/* end here */}
               <Box width={isSmallScreen ? '40%' : '50%'}></Box>
               <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                 <Link to='/' style={{ textDecoration: 'none' }}>
