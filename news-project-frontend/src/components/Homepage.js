@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import WebsiteCards from './HomePageComponents/WebsiteCards'
 import { DrawerAppBar } from './globalComponents/Header'
 import Box from '@mui/system/Box'
@@ -9,6 +9,10 @@ import SearchComponent from './globalComponents/SearchComponent'
 import { theme } from '../global_functions/GlobalTheme'
 import { ScrollTop } from '../global_functions/ScrollTop'
 import '@fontsource/league-spartan'
+
+import { useAuth } from '../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
+
 
 const StyledHomePage = styled('div')({
   backgroundColor: '#23282f',
@@ -24,6 +28,14 @@ const StyledHomePage = styled('div')({
 const Homepage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(false)
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  console.log(user);
+  useEffect(() => {
+    if (user !== false) {
+      navigate('/login_testing')
+    }
+  }, [user, navigate])
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)

@@ -9,7 +9,7 @@ const YourComponent = () => {
 
   useEffect(() => {
     if (user === false) {
-      navigate('/login')
+      navigate('/')
     }
   }, [user, navigate])
 

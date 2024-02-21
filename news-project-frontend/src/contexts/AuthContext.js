@@ -6,7 +6,7 @@ import { removeCookie } from '../global_functions/cookies'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(false)
   const { authenticateUser } = useAuthenticateUser()
 
   useEffect(() => {
