@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    class="footer"
+  >
+    <div
+      class="footer__container"
+    >
+      <div
+        class="footer__container__left"
+      >
+        <div
+          class="footer__container__left__logo"
+        >
+          <img
+            alt="Logo"
+            height="56"
+            src="/images/logo.png"
+          />
+        </div>
+        <div
+          class="footer__container__left__text"
+        >
+          <p>
+            © 2024 News Project
+          </p>
+        </div>
+      </div>
+      <div
+        class="footer__container__right"
+      >
+        <div
+          class="footer__container__right__text"
+        >
+          <p>
+            Created by: 
+            <a
+              href=""
+            >
+              News Project
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

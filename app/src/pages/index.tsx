@@ -4,15 +4,20 @@ import { SparklesPreview } from '@/components/sparklesComponent';
 import { SparklesPreviewSecond } from '@/components/sparklesComponentSecond';
 import { AnimatedTooltipPreview } from '@/components/animateTooltupComponent';
 import { BackgroundBeamsDemo } from '@/components/backgroundBeams';
+import { FloatingNavDemo } from '@/components/navbarComponent';
+import { NavbarDemo } from '@/components/navbarMenuComponent';
+
 
 export default function Home() {
   return (
     <div>
+    <NavbarDemo />
     <SparklesPreviewSecond />
-    <SparklesPreview />
     <ThreeDCardDemo />
     <AnimatedTooltipPreview />
-    <BackgroundBeamsDemo />
+    {/* <SparklesPreview />
+    <AnimatedTooltipPreview />
+    <BackgroundBeamsDemo /> */}
     </div>
   );
 }
