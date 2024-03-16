@@ -2,6 +2,7 @@
 import React from "react";
 import { BackgroundBeams } from "./ui/background-beams";
 import { IconBrandGoogle} from "@tabler/icons-react";
+import { LampContainer } from "./ui/lamp";
 
 export function BackgroundBeamsDemo() {
 
@@ -25,14 +26,13 @@ export function BackgroundBeamsDemo() {
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              Google
+              Signup with Google
             </span>
             <BottomGradient />
           </button>
         </div>
       </form>
       </h1>
-        
       <BackgroundBeams />
     </div>
   );
