@@ -15,9 +15,6 @@
 
 ## Contributors
 
-### **Leonidas Oikonomou** <a href="https://www.linkedin.com/in/leonidas-oikonomou-163207181/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
-
-
 ### **Kostantinos Alexandridhs** <a href="https://www.linkedin.com/in/k-alexandridis/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
 
 ### **Spyros Statholopoulos** <a href="https://www.linkedin.com/in/spyros-stathoulopoulos-67538b225/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="vertical-align:middle;"/></a>
